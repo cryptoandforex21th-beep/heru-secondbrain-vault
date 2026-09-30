@@ -1,1 +1,1 @@
-D:\SecondBrain\01_knowledge\projects\skripsi_facade_collector_unhas\live_proof_solar_tube_lux_600dpi.png
+d:\SecondBrain\04_app\static\layers_architecture.html

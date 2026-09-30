@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagram Arsitektur Berlapis (General Layered Architecture)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #e7e3d8;
+      --paper-deep: #d3cec1;
+      --ink: #172126;
+      --ink-soft: #526168;
+      --accent: #cf6b42;
+      --accent-soft: #e8ae88;
+      --blueprint: #a6c3c3;
+      --canvas: #26383c;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--ink);
+      color: var(--paper);
+      font-family: 'IBM Plex Sans', sans-serif;
+      padding: 40px 20px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      border-bottom: 1px solid rgba(166, 195, 195, 0.2);
+      padding-bottom: 24px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--paper);
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--blueprint);
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Layers Stack */
+    .layers-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+    }
+
+    .layer-card {
+      background: #111a1f;
+      border: 1px solid;
+      border-radius: 14px;
+      padding: 24px;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .layer-card:hover {
+      transform: translateX(8px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .layer-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .layer-badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .layer-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .layer-question {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      color: rgba(231, 227, 216, 0.6);
+      margin-left: auto;
+      font-style: italic;
+    }
+
+    .layer-content {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 20px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(231, 227, 216, 0.08);
+    }
+
+    @media (max-width: 768px) {
+      .layer-content {
+        grid-template-columns: 1fr;
+      }
+      .layer-question {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    .layer-role {
+      font-size: 0.9rem;
+      color: var(--paper-deep);
+    }
+
+    .layer-components {
+      background: rgba(23, 33, 38, 0.6);
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(166, 195, 195, 0.15);
+    }
+
+    .components-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--blueprint);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .components-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .components-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--paper);
+    }
+
+    .components-list li::before {
+      content: '▸';
+      color: var(--accent);
+    }
+
+    .connector {
+      text-align: center;
+      color: var(--blueprint);
+      font-size: 1.2rem;
+      opacity: 0.6;
+      margin: -6px 0;
+    }
+
+    /* Color Customizations per Layer */
+    .l-intent {
+      border-color: rgba(207, 107, 66, 0.5);
+      background: linear-gradient(135deg, rgba(207, 107, 66, 0.08) 0%, #111a1f 100%);
+    }
+    .l-intent .layer-badge { background: rgba(207, 107, 66, 0.2); color: var(--accent-soft); }
+    .l-intent .layer-title { color: var(--accent-soft); }
+
+    .l-interface {
+      border-color: rgba(56, 189, 248, 0.4);
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.06) 0%, #111a1f 100%);
+    }
+    .l-interface .layer-badge { background: rgba(56, 189, 248, 0.15); color: #7dd3fc; }
+    .l-interface .layer-title { color: #7dd3fc; }
+
+    .l-cognitive {
+      border-color: rgba(166, 195, 195, 0.4);
+      background: linear-gradient(135deg, rgba(166, 195, 195, 0.08) 0%, #111a1f 100%);
+    }
+    .l-cognitive .layer-badge { background: rgba(166, 195, 195, 0.2); color: var(--blueprint); }
+    .l-cognitive .layer-title { color: var(--blueprint); }
+
+    .l-protocol {
+      border-color: rgba(245, 158, 11, 0.4);
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.06) 0%, #111a1f 100%);
+    }
+    .l-protocol .layer-badge { background: rgba(245, 158, 11, 0.15); color: #fcd34d; }
+    .l-protocol .layer-title { color: #fcd34d; }
+
+    .l-storage {
+      border-color: rgba(167, 139, 250, 0.4);
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.06) 0%, #111a1f 100%);
+    }
+    .l-storage .layer-badge { background: rgba(167, 139, 250, 0.15); color: #c4b5fd; }
+    .l-storage .layer-title { color: #c4b5fd; }
+
+    .l-hardware {
+      border-color: rgba(100, 116, 139, 0.4);
+      background: linear-gradient(135deg, rgba(100, 116, 139, 0.08) 0%, #111a1f 100%);
+    }
+    .l-hardware .layer-badge { background: rgba(100, 116, 139, 0.2); color: #cbd5e1; }
+    .l-hardware .layer-title { color: #cbd5e1; }
+
+    footer {
+      text-align: center;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(166, 195, 195, 0.2);
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Anatomi Diagram Arsitektur Berlapis</h1>
+      <div class="subtitle">General Multi-Layer Architecture · Dari Manusia Hingga Silikon Mesin</div>
+    </header>
+
+    <div class="layers-stack">
+      <!-- Layer 5: Intent -->
+      <div class="layer-card l-intent">
+        <div class="layer-header">
+          <span class="layer-badge">LAYER 5</span>
+          <span class="layer-title">👤 Human Intent & Purpose Layer</span>
+          <span class="layer-question">"Saya mau mencapai apa?"</span>
+        </div>
+        <div class="layer-content">
+          <div class="layer-role">
+            <strong>Fungsi Utama:</strong> Menetapkan tujuan hidup, visi desain arsitektur, dan keputusan strategis tanpa terdistraksi hal teknis koding.
+          </div>
+          <div class="layer-components">
+            <div class="components-label">Komponen & Isinya:</div>
+            <ul class="components-list">
+              <li>Heru Ardiansyah (Arsitek / Founder GradiEnt / Mahasiswa Unhas)</li>
+              <li>Tujuan Skripsi: Lulus S1 Arsitektur dengan Fasad Adaptif Terbaik</li>
+              <li>Visi Bisnis: Bangun GradiEnt Studio di Makassar</li>
+              <li>Input: Suara di HP, perintah chat, ide sketsa di kertas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">▼ Instruksi dikirim melalui antarmuka visual ▼</div>
+
+      <!-- Layer 4: Interface -->
+      <div class="layer-card l-interface">
+        <div class="layer-header">
+          <span class="layer-badge">LAYER 4</span>
+          <span class="layer-title">🖥️ Presentation & Interface Layer</span>
+          <span class="layer-question">"Di mana saya melihat & mengontrol?"</span>
+        </div>
+        <div class="layer-content">
+          <div class="layer-role">
+            <strong>Fungsi Utama:</strong> Menyajikan informasi dalam bentuk yang ramah mata manusia (grafis, tombol, teks rapi) dan menerima input keyboard/mouse.
+          </div>
+          <div class="layer-components">
+            <div class="components-label">Komponen & Isinya:</div>
+            <ul class="components-list">
+              <li>Microsoft Word (Naskah Tugas Akhir Bismillah fix)</li>
+              <li>Microsoft Edge (Tab Gemini Notebook & Blueprint Visualizer)</li>
+              <li>Rhino 8 & Revit 2027 Viewport (Model 3D Menara Dynamo)</li>
+              <li>Aplikasi Gemini Mobile di HP Android/iOS (Voice Mode)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">▼ Teks & Perintah diterjemahkan ke agen cerdas ▼</div>
+
+      <!-- Layer 3: Cognitive -->
+      <div class="layer-card l-cognitive">
+        <div class="layer-header">
+          <span class="layer-badge">LAYER 3</span>
+          <span class="layer-title">🧠 Cognitive & Orchestration Layer</span>
+          <span class="layer-question">"Siapa yang mikir & membagi tugas?"</span>
+        </div>
+        <div class="layer-content">
+          <div class="layer-role">
+            <strong>Fungsi Utama:</strong> Otak pemikir AI yang memahami konteks, mengingat identitas Heru, dan membagi tugas ke koordinator divisi spesialis.
+          </div>
+          <div class="layer-components">
+            <div class="components-label">Komponen & Isinya:</div>
+            <ul class="components-list">
+              <li>👑 @Ai : Superadmin & Project Manager (00_ai_pm)</li>
+              <li>🎓 @Luna : Divisi Riset Skripsi Unhas (-5° Makassar, SNI 300 lux)</li>
+              <li>💻 @Mochi : Divisi Web GradiEnt Studio (Next.js & Supabase)</li>
+              <li>🌵 @Kaktus : Divisi BIM & RAB (AHSP Makassar)</li>
+              <li>📈 @MasAmba : Divisi Kuantitatif & Risk 1-2%</li>
+              <li>Memori Ledger: BRAIN_STATE.md (Anti-Lupa seumur hidup)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">▼ Tindakan disaring lewat protokol & aturan ketat ▼</div>
+
+      <!-- Layer 2: Protocol -->
+      <div class="layer-card l-protocol">
+        <div class="layer-header">
+          <span class="layer-badge">LAYER 2</span>
+          <span class="layer-title">⚙️ Logic, Protocols & Services Layer</span>
+          <span class="layer-question">"Apa filter & aturan mainnya?"</span>
+        </div>
+        <div class="layer-content">
+          <div class="layer-role">
+            <strong>Fungsi Utama:</strong> Pagar pengaman dan protokol yang menyaring kesalahan, memeriksa sintaks, mendeteksi perubahan file, dan mencegah kebocoran data.
+          </div>
+          <div class="layer-components">
+            <div class="components-label">Komponen & Isinya:</div>
+            <ul class="components-list">
+              <li>Language Server (LSP) : Mencegat error kodingan sebelum crash</li>
+              <li>MeshSync Daemon (mesh_sync.py) : Deteksi otomatis file Word & Git</li>
+              <li>Zero-Leak Security Guard (.gitignore & .vault/)</li>
+              <li>Standar Baku SNI 03-6197-2020 & Rumus Fisika Solar Tube</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">▼ Data disimpan permanen ke dalam brankas ▼</div>
+
+      <!-- Layer 1: Storage -->
+      <div class="layer-card l-storage">
+        <div class="layer-header">
+          <span class="layer-badge">LAYER 1</span>
+          <span class="layer-title">📚 Persistence & Storage Vault Layer</span>
+          <span class="layer-question">"Di mana data disimpan selamanya?"</span>
+        </div>
+        <div class="layer-content">
+          <div class="layer-role">
+            <strong>Fungsi Utama:</strong> Brankas penyimpanan permanen yang tahan banting (anti-hilang), terdistribusi antara harddisk laptop dan cloud internet.
+          </div>
+          <div class="layer-components">
+            <div class="components-label">Komponen & Isinya:</div>
+            <ul class="components-list">
+              <li>Harddisk D:\SecondBrain (01_knowledge: Projects, Resources, Inbox)</li>
+              <li>GitHub Private Cloud Vault (heru-secondbrain-vault branch main)</li>
+              <li>Google Drive Desktop (G:\My Drive\NOTEBOOKLM_SKRIPSI_HERU)</li>
+              <li>Session Archives (36+ riwayat keputusan di INDEX.md)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">▼ Bit data dijalankan oleh elektron & perangkat keras ▼</div>
+
+      <!-- Layer 0: Hardware -->
+      <div class="layer-card l-hardware">
+        <div class="layer-header">
+          <span class="layer-badge">LAYER 0</span>
+          <span class="layer-title">⚡ Physical Hardware & OS Kernel Layer</span>
+          <span class="layer-question">"Siapa yang menggerakkan fisik laptop?"</span>
+        </div>
+        <div class="layer-content">
+          <div class="layer-role">
+            <strong>Fungsi Utama:</strong> Komponen fisik nyata (silikon, listrik, dan kernel OS) yang mengeksekusi instruksi dalam kecepatan mikrodetik.
+          </div>
+          <div class="layer-components">
+            <div class="components-label">Komponen & Isinya:</div>
+            <ul class="components-list">
+              <li>Windows 11 OS Kernel & Win32 user32.dll (Pengatur kursor mouse)</li>
+              <li>Processor CPU (Komputasi Python) & GPU NVIDIA</li>
+              <li>Harddisk Fisik NVMe SSD (Drive C:\ dan D:\)</li>
+              <li>Kursor Mouse Fisik, Layar Monitor, dan Keyboard laptop Heru</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      General Layered Architecture Blueprint · GradiEnt Studio © 2026 · Designed by Ai for Heru Ardiansyah
+    </footer>
+  </div>
+</body>
+</html>
