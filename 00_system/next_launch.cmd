@@ -1,1 +1,1 @@
-d:\SecondBrain\04_app\static\blueprint_visualizer.html
+D:\SecondBrain\01_knowledge\projects\skripsi_facade_collector_unhas\live_proof_solar_tube_lux_600dpi.png
