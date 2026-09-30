@@ -1,1 +1,1 @@
-explorer.exe D:\SecondBrain\01_knowledge\projects\skripsi_facade_collector_unhas\NOTEBOOKLM_SOURCES
+d:\SecondBrain\04_app\static\blueprint_visualizer.html

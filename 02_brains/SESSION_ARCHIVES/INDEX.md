@@ -39,3 +39,5 @@
 | [session_2026-09-30_2044.md](session_2026-09-30_2044.md) | 2026-09-30 20:44:57 WITA | @Ai (PM), @Luna (Akademik) | Auto-Archived |
 | [session_2026-09-30_2052.md](session_2026-09-30_2052.md) | 2026-09-30 20:52:55 WITA | @Ai (PM), @Luna (Akademik) | Auto-Archived |
 | [session_2026-09-30_2105.md](session_2026-09-30_2105.md) | 2026-09-30 21:05:36 WITA | @Ai (PM), @Luna (Akademik) | Auto-Archived |
+| [session_2026-09-30_2109.md](session_2026-09-30_2109.md) | 2026-09-30 21:09:47 WITA | @Ai (PM), @Luna (Akademik) | Auto-Archived |
+| [session_2026-09-30_2121.md](session_2026-09-30_2121.md) | 2026-09-30 21:21:36 WITA | @Ai (PM), @Luna (Akademik) | Auto-Archived |
