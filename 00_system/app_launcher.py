@@ -18,7 +18,7 @@ KNOWN_ALIASES = {
     "blender": os.path.expandvars(r"%APPDATA%\Microsoft\Windows\Start Menu\Programs\Blender\Blender 5.2.lnk"),
     "code": os.path.expandvars(r"%APPDATA%\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\Visual Studio Code.lnk"),
     "vscode": os.path.expandvars(r"%APPDATA%\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\Visual Studio Code.lnk"),
-    "edge": r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Edge.lnk",
+    "edge": os.path.expandvars(r"%APPDATA%\Microsoft\Windows\Start Menu\Programs\Microsoft Edge.lnk"),
     "word": r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk",
     "excel": r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Excel.lnk",
     "calc": "calc.exe",

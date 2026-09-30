@@ -486,3 +486,21 @@ Launching: "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --remo
 subprocess.Popen executed silently.
 Launching: "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --remote-debugging-port=9222 --user-data-dir="C:\Users\Heru Ardiansyah\.gemini\edge_dev" "https://www.google.com"
 subprocess.Popen executed silently.
+Launching: C:\Users\Heru Ardiansyah\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Microsoft Edge.lnk
+os.startfile executed.
+Launching: "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --remote-debugging-port=9222 --remote-allow-origins=* --user-data-dir="C:\Users\Heru Ardiansyah\AppData\Local\Microsoft\Edge\User Data" https://gemini.google.com
+subprocess.Popen executed silently.
+Launching: https://gemini.google.com/gems/create?authuser=1
+start URL executed.
+Launching: https://gemini.google.com/app?authuser=2
+start URL executed.
+Launching: https://gemini.google.com/u/2/gems/create
+start URL executed.
+Launching: python d:\SecondBrain\00_system\install_gems_into_heru003.py
+subprocess.Popen executed silently.
+Launching: https://gemini.google.com/u/3/app
+start URL executed.
+Launching: python d:\SecondBrain\00_system\capture_session1.py
+subprocess.Popen executed silently.
+Launching: python d:\SecondBrain\00_system\view_gems_list.py
+subprocess.Popen executed silently.

@@ -17,3 +17,6 @@ __pycache__/
 # Media scratch dumps
 01_knowledge/archives/root_scrape_dumps/
 00_system/scratch/
+
+*.db
+*.db-journal
