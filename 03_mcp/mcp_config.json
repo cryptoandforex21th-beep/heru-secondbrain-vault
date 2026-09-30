@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "secondbrain_filesystem": {
+      "command": "python",
+      "args": ["-m", "mcp.server.fastmcp"],
+      "env": {
+        "SECONDBRAIN_ROOT": "d:/SecondBrain/01_knowledge"
+      }
+    }
+  }
+}

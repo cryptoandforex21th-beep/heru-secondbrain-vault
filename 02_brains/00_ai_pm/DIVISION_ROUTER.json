@@ -1,0 +1,128 @@
+{
+  "project_manager": {
+    "callout": "@Ai",
+    "name": "Ai",
+    "nickname": "Ai",
+    "role": "Executive Project Manager & Sahabat Karib Heru",
+    "access_level": "superadmin_unrestricted",
+    "authority": "Mengontrol seluruh divisi, read/write semua folder, penjamin mutu hasil akhir."
+  },
+  "divisions": {
+    "01_luna_academic": {
+      "callout": "@Luna",
+      "coordinator": "Profesor LUNA",
+      "nickname": "Luna",
+      "role": "Dosen Pembimbing & Penguji Skripsi S1 Unhas",
+      "folder": "d:/SecondBrain/02_brains/01_luna_academic",
+      "assigned_skills": ["luna-academic-grounding", "heru-academic-voice"],
+      "subagents": {
+        "kutu": {
+          "callout": "@Kutu",
+          "name": "Kutu",
+          "role": "Kutu Buku Pencari Jurnal Scopus Q1",
+          "skills": ["literature-search-openalex", "literature-search-arxiv", "literature-search-europepmc"]
+        },
+        "crayon": {
+          "callout": "@Crayon",
+          "name": "Crayon",
+          "role": "Pelukis Grafik Ilmiah 600 DPI",
+          "skills": ["scientific-figure-making", "figures4papers"]
+        },
+        "kucing": {
+          "callout": "@Kucing",
+          "name": "Kucing",
+          "role": "Penjaga Integritas Anti-Turnitin AI",
+          "skills": ["aigc-detector-rewriter"]
+        },
+        "mata": {
+          "callout": "@Mata",
+          "name": "Mata",
+          "role": "Penonton & Perangkum Video Tutorial YouTube",
+          "skills": ["claude-video"]
+        }
+      }
+    },
+    "02_gradient_dev": {
+      "callout": "@Mochi",
+      "coordinator": "MOCHI",
+      "nickname": "Mochi",
+      "role": "Lead Software & Web Architect GradiEnt Studio",
+      "folder": "d:/SecondBrain/02_brains/02_gradient_dev",
+      "assigned_skills": ["building-data-apps", "typesafe-ai"],
+      "subagents": {
+        "piksel": {
+          "callout": "@Piksel",
+          "name": "Piksel",
+          "role": "Spesialis UI Component & Animasi Tailwind",
+          "skills": ["cult-ui", "fast-gui-orchestrator", "fast-form-filler"]
+        },
+        "kunci": {
+          "callout": "@Kunci",
+          "name": "Kunci",
+          "role": "Penjaga Brankas Database Supabase",
+          "skills": ["supabase-integration", "managing-python-dependencies"]
+        }
+      }
+    },
+    "03_bim_construction": {
+      "callout": "@Kaktus",
+      "coordinator": "KAKTUS",
+      "nickname": "Kaktus",
+      "role": "BIM & AEC Engineering Lead (LOD 350 & Lapangan)",
+      "folder": "d:/SecondBrain/02_brains/03_bim_construction",
+      "assigned_skills": ["ddc-construction-suite", "revit-bim-connector"],
+      "subagents": {
+        "tabrak": {
+          "callout": "@Tabrak",
+          "name": "Tabrak",
+          "role": "Tukang Razia Clash Detection 3D",
+          "skills": ["clash-detection", "ddc-skills"]
+        },
+        "cuan": {
+          "callout": "@Cuan",
+          "name": "Cuan",
+          "role": "Estimator Hitung Volume & RAB Menara Dynamo",
+          "skills": ["qto-estimator", "rab-calculator", "jev-ai"]
+        }
+      }
+    },
+    "04_trading_mas_amba": {
+      "callout": "@MasAmba",
+      "coordinator": "MAS AMBA",
+      "nickname": "Mas Amba",
+      "role": "Quantitative Trader & Algorithmic Crypto/Forex Lead",
+      "folder": "d:/SecondBrain/02_brains/04_trading_mas_amba",
+      "assigned_skills": [
+        "algo-trading-quant",
+        "ml-best-practices",
+        "managing-python-dependencies"
+      ],
+      "subagents": {
+        "lilin": {
+          "callout": "@Lilin",
+          "name": "Lilin",
+          "role": "Chartist & Smart Money Concepts Specialist",
+          "skills": ["algo-trading-quant", "technical-analysis"]
+        },
+        "bandar": {
+          "callout": "@Bandar",
+          "name": "Bandar",
+          "role": "Whale Tracker & Sentiment Analyst",
+          "skills": ["algo-trading-quant", "sentiment-analysis"]
+        },
+        "botik": {
+          "callout": "@Botik",
+          "name": "Botik",
+          "role": "Algo & Python Backtest Engineer",
+          "skills": ["algo-trading-quant", "managing-python-dependencies"]
+        },
+        "rem": {
+          "callout": "@Rem",
+          "name": "Rem",
+          "role": "Chief Risk Officer & Position Sizer",
+          "skills": ["algo-trading-quant", "risk-management"]
+        }
+      }
+    }
+  }
+}

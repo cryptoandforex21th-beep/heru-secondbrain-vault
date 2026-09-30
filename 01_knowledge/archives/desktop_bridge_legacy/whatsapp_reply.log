@@ -1,0 +1,19 @@
+[2026-09-25 22:12:33] === Starting WhatsApp Automated Reply ===
+[2026-09-25 22:12:33] ERROR: Traceback (most recent call last):
+  File "d:\SecondBrain\02_skills\desktop_bridge\whatsapp_reply.py", line 25, in <module>
+    import psutil
+ModuleNotFoundError: No module named 'psutil'
+
+[2026-09-25 22:13:11] === Starting WhatsApp Automated Reply ===
+[2026-09-25 22:13:11] Step 1: Launching / Bringing WhatsApp to front...
+[2026-09-25 22:13:14] Step 2: Searching for WhatsApp window...
+[2026-09-25 22:13:14] Found 2 potential WhatsApp windows: [(132890, 'WhatsApp Beta', (634, 136, 1715, 868)), (67424, '(114) WhatsApp', (642, 137, 1707, 860))]
+[2026-09-25 22:13:14] Targeting window HWND: 132890
+[2026-09-25 22:13:15] Step 3: Triggering Search with Ctrl+F...
+[2026-09-25 22:13:17] Typing contact name 'glo mbg'...
+[2026-09-25 22:13:19] Selecting search result...
+[2026-09-25 22:13:21] Step 4: Pasting reply message: 'iya sayang, aamiin. kamu sekarang lagi apa?'
+[2026-09-25 22:13:22] Pre-send screenshot saved to d:\SecondBrain\00_system\whatsapp_pre_send.png
+[2026-09-25 22:13:22] Step 5: Pressing Enter to send message...
+[2026-09-25 22:13:23] Post-send screenshot saved to d:\SecondBrain\00_system\whatsapp_post_send.png
+[2026-09-25 22:13:23] === WhatsApp Automated Reply Finished Successfully ===

@@ -1,0 +1,525 @@
+PERANCANGAN MATTOANGING COMMUNITY HUB DENGAN FASAD KINETIK ADAPTIF BERBASIS MACHINE LEARNING UNTUK OPTIMASI PENCAHAYAAN ALAMI
+
+HERU ARDIANSYAH
+
+D051 22 1073
+
+PERANCANGAN MATTOANGING COMMUNITY HUB DENGAN FASAD KINETIK ADAPTIF BERBASIS MACHINE LEARNING UNTUK OPTIMASI PENCAHAYAAN ALAMI
+
+HERU ARDIANSYAH
+D051 22 1073
+
+PROGRAM STUDI SARJANA ARSITEKTUR
+
+DEPARTEMEN ARSITEKTUR
+
+FAKULTAS TEKNIK
+
+UNIVERSITAS HASANUDDIN
+
+MAKASSAR
+
+2025
+
+DAFTAR ISI
+
+Halaman
+
+DAFTAR TABEL
+
+Tabel 1. Gambaran umum parafin murni dan sifat utamanya.	9
+
+Tabel 2. Gambaran umum parafin technical grade dan sifat utamanya.	11
+
+Tabel 3. Gambaran umum asam lemak dan sifat utamanya.	12
+
+Tabel 4. Gambaran umum garam dan sifat utamanya.	13
+
+Tabel 5. Gambaran umum garam hidrat dan sifat utamanya.	14
+
+Tabel 6. Gambaran umum logam dan sifat utamanya.	15
+
+DAFTAR GAMBAR
+
+Gambar 1. Mars Dune Alpha	17
+
+Gambar  2. MARSHA (AI SpaceFactory, Pemenang NASA 3D Printed Habitat Challenge	18
+
+Gambar  3. Mars Ice House (SEArch+/Clouds AO)	19
+
+
+PENDAHULUAN
+
+Latar Belakang
+
+Penyediaan ruang terbuka publik atau third space telah menjadi salah satu tantangan terbesar dalam perencanaan kota di abad ke-21, dengan kawasan eks-Stadion Mattoanging di Makassar sebagai fokus utama karena lokasinya yang sangat strategis. Makassar, sebagai gerbang utama Indonesia Timur, mengalami kepadatan urban yang masif, sehingga ketersediaan ruang komunal untuk edukasi, interaksi, dan ekonomi kreatif menjadi kandidat terkuat untuk meningkatkan kualitas hidup warga (Putra et al., 2024). Dalam perkembangannya pascapandemi, pergeseran paradigma arsitektur menunjukkan bahwa ruang publik komersial seperti Community Hub wajib dirancang sebagai infrastruktur sosial yang tangguh secara lingkungan (Setiawan & Lee, 2023).
+
+Tantangan utama perancangan Community Hub berkonsep ruang terbuka di Makassar terletak pada iklim pesisir tropis yang ekstrem. Intensitas radiasi matahari sangat tinggi dengan suhu permukaan kota yang kerap memicu fenomena Urban Heat Island pada siang hari (BMKG, 2025). Selain itu, lintasan matahari tropis yang tajam menghasilkan paparan cahaya langsung yang sangat menyilaukan. Kondisi ini menuntut adanya sistem selubung bangunan (building envelope) atau kanopi yang mampu menjaga kenyamanan visual secara dinamis tanpa mengorbankan masuknya cahaya alami.
+
+Sebagian besar penelitian dan perancangan ruang publik tropis dewasa ini masih berfokus pada aspek peneduh pasif melalui pemanfaatan kanopi statis atau kisi-kisi permanen (Nugroho et al., 2022). Elemen peneduh statis ini terbukti mampu memblokir sebagian radiasi panas. Namun, pendekatan pasif memiliki keterbatasan ekstrem dalam kinerja pencahayaan alami (daylighting). Studi terbaru menunjukkan bahwa peneduh statis gagal beradaptasi terhadap perubahan geometri lintasan matahari, sehingga kerap memicu ketidakseimbangan antara area yang terlalu gelap (underlit) dan area yang terpapar silau berlebih atau Annual Sunlight Exposure (Tabadkani et al., 2023).
+
+Untuk menjawab masalah ini, solusi paling mutakhir adalah penerapan Adaptive Kinetic Facade, yaitu selubung bangunan cerdas yang dapat bertransformasi secara mekanis merespons perubahan lintasan matahari. Mekanisme ini memungkinkan fasad menstabilkan kenyamanan visual tanpa menutup bangunan secara statis. Penggunaan algoritma Machine Learning sebagai surrogate model kini terbukti sangat superior untuk memprediksi dan mengontrol pergerakan fasad kinetik secara real-time. Model ini secara komputasional mampu mengoptimalkan metrik Spatial Daylight Autonomy (sDA) dan meminimalkan silau (ASE) jauh melebihi metode parametrik konvensional (Zou et al., 2025). Sayangnya, integrasi fasad kinetik berbasis algoritma ini pada arsitektur ruang publik skala urban di Indonesia belum pernah dieksplorasi secara mendalam (Eltaweel & Su, 2024).
+
+Oleh karena itu, skripsi mengenai rancangan integrasi Adaptive Kinetic Facade ke dalam arsitektur Mattoanging Community Hub memiliki urgensi dan relevansi tinggi untuk mengisi kesenjangan pengetahuan tersebut. Perancangan ini diharapkan dapat membuktikan efektivitas selubung kinetik dalam mereduksi silau matahari ekstrem, memaksimalkan pencahayaan alami yang sehat, serta meningkatkan kenyamanan visual pengunjung. Hasil perancangan ini berpotensi menjadi purwarupa (prototype) bagi pemerintah kota maupun praktisi arsitektur dalam merencanakan ruang publik tropis yang cerdas secara komputasional, sekaligus berkontribusi pada keilmuan arsitektur masa depan.
+
+Rumusan Masalah
+
+Berdasarkan latar belakang di atas, rumusan masalah dalam perancangan ini adalah:
+
+Bagaimana merancang Mattoaning Community Hub sebagai ruang publik yang responsif terhadap kondisi iklim tropis di Makassar?
+
+Bagaimana mengintegrasikan Adaptive Kinetic Facade berbasis Machine Learning untuk mengoptimasi kinerja pencahayaan alami (memaksimalkan Sda Dan meminimalkan ASE) pada kawasan tersebut?
+
+Tujuan dan Sasaran Penulisan
+
+Adapun tujuan dan sasaran dari penulisan laporan tugas akhir ini yakni sebagai berikut.
+
+Tujuan
+
+Adapun tujuan dari penulisan tugas akhir ini yakni sebagai berikut:
+
+Merancang bentuk dan fungsi Mattoanging Community Hub sebagai ruang publik dan fasilitas edukasi yang adaptif serta responsif terhadap kondisi iklim tropis di Kota Makassar.
+
+Mengintegrasikan sisterm Adaptive Kinetic Facade untuk mencapai optimal kinerja pencahayaan alami (memaksimalkan metrik sDA dan meminimalkan ASE).
+
+Sasaran
+
+Sasaran perancangan ini dicapai melalui serangkaian tahapan komputasional yang terukur, diawali dengan menganalisis potensi lahan eks-Stadion Mattoanging beserta data iklim (EPW) Kota Makassar sebagai parameter dasar perancangan. Proses tersebut kemudian dilanjutkan dengan penyusunan algoritma Adaptive Kinetic Facade yang terintegrasi dengan model prediktif Machine Learning menggunakan perangkat lunak Rhinoceros dan Grasshopper, hingga diakhiri dengan pelaksanaan simulasi pencahayaan alami (Climate-Based Daylight Modelling) guna memvalidasi metrik sDA dan ASE secara kuantitatif pada ruang-ruang fungsional bangunan.
+
+Batasan Pembahasan dan Lingkup Pembahasan
+
+Batasan dan lingkup pembahasan yang ada pada penelitian ini adalah sebagai berikut:
+
+Batasan Pembahasan
+
+Bangunan pameran karya  ini dirancang secara kompleks hingga pada perancangan ini akan difokuskan pada beberapa aspek batasan pembahasan, yang akan diuraikan sebagai berikut :
+
+Penelitian difokuskan pada penerapan sistem Adaptive Kinetic Facade (selubung/kanopi kinetik) berbasis Machine Learning sebagai strategi opstimasi pencahayaan alami pada fasilitas Mattoanging Community Hub.
+
+Skala perancangan adalah kawasan ruang terbuka publik komunal dan perpustakaan dengan pendekatan desain baru (new design) di lahan eks-Stadion Mattoanging Makassar.
+
+Analisis performa komputasional dibatasi secara kuantitatif murni pada aspek daylighting (metrik sDA dan ASE). Simulasi kenyamanan termal (suhu ruang/beban pendinginan).
+
+Perancangan difokuskan pada pengolahan geometri parametrik, orientasi kanopi, serta algoritma pergerakan modul fasad kinetik.
+
+Data iklim, lintasan matahari (sun path), dan radiasi yang digunakan sebagai parameter input simulasi mengacu pada kondisi geografis dan klimatologis Kota Makassar berbasis data EPW (EnergyPlus Weather).
+
+Lingkup Pembahasan
+
+Pada lingkup pembahasan akan dibahas terkait dengan faktor-faktor yang ada di latar belakang hingga pada tujuan penulisan Lingkup pembahasaan dapat diuraikan sebagai berikut:
+
+Penerapan sistem Adaptive Kinetic Facade (selubung kinetik) berbasis Machine Learning pada Mattoanging Community Hub di Makassar sebagai strategi utama dalam optimasi pencahayaan alami.
+
+Integrasi sistem Adaptive Kinetic Facade tersebut ke dalam desain arsitektur secara komprehensif, yang mencakup aspek fungsi ruang publik komunal, eksplorasi bentuk (geometri parametrik), serta pencapaian kenyamanan visual (sDA dan ASE) pada ruang dalam maupun semi-terbuka.
+
+Selain daripada itu, lingkup pembahasan juga ditentukan pada disiplin ilmu Arsitektur, sedangkan di luar disiplin ilmu ini hanya dilakukan sebatas menunjang pembahasan mengenai desain bangunan kantor sewa dengan facade collector modular.
+
+Sistematika Pembahasan
+
+Pembahasan ini disusun sesuai format bab dan disertai dengan penjelasan isi bab seperti berikut:
+
+BAB I. PENDAHULUAN
+
+Menyajikan uraian tentang prihal yang mendasari topik perancangan yang diusulkan untuk diteliti secara spesifik. Permasalahan dan tujuan dijabarkan secara utuh dalam rangkaian kalimat yang sistematis.
+
+BAB II. METODE PERANCANGAN
+
+Memuat metode penelitian, analisis variable serta alat yang digunakan dalam proses perancangan.
+
+BAB III ANALISIS DATA PERANCANGAN
+
+Bab ini berisi pengolahan dan interpretasi data yang telah dikumpulkan untuk mendapatkan dasar konseptual dalam merancang bangunan. Isinya meliputi hasil analisis terhadap tapak, iklim, kebutuhan ruang, sistem pencahayaan alami (façade collector modular), serta aspek fungsional dan estetika bangunan yang nantinya menjadi landasan penyusunan konsep perancangan.
+
+BAB IV KONSEP PERANCANGAN
+
+Pada bab ini akan dipaparkan kesimpulan dari seluruh proses perancangan yang telah dilakukan. Bagaimana permasalahan yang sebelumnya diangkat mencapai titik temu dan dijelaskan pula bagaimana akhir dari proses penyelesaian dari rumusan masalah yang diangkat. Pada bab ini juga dimuat saran yang dapat diberikan untuk perancangan atau mengembangkan lebih lanjut perancangan terkait dengan topik yang dibahas pada tugas akhir ini.
+
+BAB V PENUTUP
+
+Pada bab ini akan dipaparkan kesimpulan dari seluruh proses perancangan yang telah dilakukan. Bagaimana permasalahan yang sebelumnya diangkat mencapai titik temu dan dijelaskan pula bagaimana akhir dari proses penyelesaian dari rumusan masalah yang diangkat. Pada bab ini juga dimuat saran yang dapat diberikan untuk penelitian atau mengembangkan lebih lanjut penelitian terkait dengan topik yang dibahas pada tugas akhir ini.
+
+Kajian Umum
+
+Kajian umum ini memuat penjelasan mengenai terminologi yang digunakan dalam judul tugas akhir, serta fungsi dan keterkaitannya dengan disiplin ilmu arsitektur untuk menghindari perbedaan penafsiran. 
+
+Pengertian Judul
+
+Adapun pembahasan redaksi kata pada judul yang diajukan yaitu sebagai berikut.
+
+Perancangan
+
+Proses sistematis dalam menyusun dan menciptakan wadah fisik baru (desain) untuk mewadahi aktivitas manusia, dengan mempertimbangkan aspek fungsional, estetika, dan lingkungan.
+
+Mattoaning Community Hub
+
+Sebuah tipologi ruang terbuka publik (third space) komunal dan fasilitas edukasi yang direncanakan di lahan eks-Stadion Mattoanging Makassar. Fasilitas ini dirancang sebagai infrastruktur sosial yang tangguh (Setiawan & Lee, 2023) sekaligus merespons konteks kepadatan urban kota (Putra et al., 2024).
+
+Fasad Kinetik Adaptif
+
+Sistem selubung bangunan atau kanopi mekanis yang dapat bergerak dan bertransformasi secara dinamis untuk merespons perubahan kondisi iklim luar (lintasan matahari). Sistem ini digunakan untuk menutupi kelemahan elemen peneduh statis yang kerap gagal beradaptasi di iklim tropis (Nugroho et al., 2022; Tabadkani et al., 2023).
+
+Berbasis Machine Learning
+
+Pendekatan komputasional menggunakan kecerdasan buatan (algoritma prediksi) yang bertindak sebagai surrogate model. Dalam perancangan ini, Machine Learning digunakan untuk membaca data cuaca dan menginstruksikan pergerakan fasad secara otomatis dan real-time dengan sangat cepat (Zou et al., 2025).
+
+Optimasi Pencahayaan Alami (Daylighting)
+
+Upaya arsitektural untuk mencapai target kenyamanan visual yang terukur secara kuantitatif, yakni dengan memaksimalkan metrik Spatial Daylight Autonomy (sDA) untuk penerangan, dan meminimalkan Annual Sunlight Exposure (ASE) untuk mencegah silau (Eltaweel & Su, 2024).
+
+Fungsi dan Tujuan Penerapaan Fasad Kinetik Adaptif Berbasis Machine Learning
+
+Secara fungsional, penerapan Adaptive Kinetic Facade pada Mattoanging Community Hub berfungsi sebagai selubung pengatur iklim yang bertindak layaknya filter aktif. Mengingat iklim pesisir Makassar memicu radiasi panas dan Urban Heat Island yang ekstrem (BMKG/BRIN, 2023), selubung mekanis ini berfungsi untuk memblokir penetrasi sinar matahari langsung pada jam-jam kritis, namun tetap membuka diri pada sudut tertentu untuk memasukkan cahaya difus yang lembut secara optimal.
+
+Tujuan utama dari integrasi komputasi Machine Learning pada sistem ini adalah untuk mengeliminasi uji-coba manual (trial and error) dalam mencari sudut bukaan fasad yang paling tepat. Algoritma ini bertujuan untuk secara konstan menjaga keseimbangan antara pencahayaan alami yang cukup (sDA) dan pencegahan silau visual (ASE), sehingga pengunjung dapat beraktivitas (membaca, berdiskusi, bekerja) di ruang komunal dengan nyaman sepanjang hari tanpa bergantung pada lampu listrik.
+
+Keterkaitan Arsitektur
+
+Penelitian dan perancangan ini memiliki keterkaitan yang sangat erat dengan disiplin ilmu Arsitektur, khususnya pada ranah Sains Bangunan (Building Science) dan Arsitektur Komputasional (Computational Architecture). Dalam paradigma modern, bangunan tidak lagi dipahami sebagai objek statis yang kaku, melainkan sebuah entitas dinamis yang mampu "bernapas" dan merespons kondisi iklim mikro di sekitarnya.
+
+Penerapan Machine Learning dan Kinetic Facade menjembatani estetika bentuk dengan efisiensi rekayasa teknologi lingkungan (Eltaweel & Su, 2024). Melalui perancangan ini, arsitektur dikembalikan pada esensinya yang tertinggi: melindungi manusia dari iklim yang ekstrem melalui respons bentuk (geometri) yang cerdas, efisien, dan berbasis data ilmiah, sehingga menciptakan arsitektur yang berkelanjutan.
+
+Tinjauan Khusus 
+
+Tinjauan khusus berisi pembedahan teori secara mendalam mengenai variabel-variabel utama yang digunakan dalam perancangan. Tinjauan ini melengkapi landasan konseptual sebelum masuk ke tahap analisis dan simulasi.
+
+Tinjauan Khusus Fasad Kinetik Adaptif 
+
+Fasad kinetik adaptif merupakan elemen selubung bangunan yang dapat bertransformasi secara fisik untuk merespons perubahan kondisi iklim eksternal, khususnya pergerakan matahari. Teknologi ini merupakan evolusi dari peneduh statis menuju sistem interaktif yang mengoptimalkan keseimbangan energi dan kenyamanan visual (Tabadkani et al., 2023).
+
+Fungsi Dan Tujuan Kinetik Adaptif 
+
+Fungsi utama fasad kinetik adalah sebagai filter lingkungan aktif yang mengatur masuknya radiasi matahari. Menurut Eltaweel & Su (2024), tujuannya meliputi:
+
+Optimasi Pencahayaan Alami: Memaksimalkan masuknya cahaya langit yang lembut untuk mengurangi penggunaan lampu buatan.
+
+Pencegahan Silau (Glare Control): Memblokir sinar matahari langsung secara presisi untuk menjaga kenyamanan visual pengunjung.
+
+Reduksi Beban Termal: Menghalau radiasi panas berlebih yang memicu Urban Heat Island di dalam bangunan.
+
+Prinsip Kerja Fasad Kinetik 
+
+Prinsip kerja Adaptive Kinetic Facade beroperasi melampaui batas arsitektur konvensional melalui siklus sistem umpan balik tertutup (closed-loop system)¹. Mekanisme ini tidak sekadar merespons cuaca secara pasif, melainkan memprosesnya secara komputasional melalui tiga sekuens utama:
+
+Tahap Input (Ekstraksi Data Iklim):
+
+Sistem tidak bergerak berdasarkan asumsi. Ia melacak lintasan matahari (sun path) secara kontinu menggunakan matriks data cuaca historis (EPW) spesifik titik koordinat pesisir Makassar (-5° LS). Pada setiap jam operasional, algoritma membaca Altitude dan Azimuth matahari secara real-time. Di tahap ini, sistem secara cerdas memisahkan kalkulasi antara Direct Solar Radiation (cahaya langsung pemicu panas dan silau) dengan Diffuse Sky Radiation (cahaya langit pendar yang menyejukkan) (Tabadkani et al., 2023).
+
+Tahap Proses (Evaluasi Sudut & Surrogate Model): 
+
+Data cuaca murni tersebut ditarik ke dalam kanvas algoritma parametrik (Grasshopper). Di sinilah Machine Learning mengambil alih. Berperan sebagai surrogate model, mesin mengevaluasi Angle of Incidence (sudut jatuh sinar matahari) terhadap fasad bangunan. Algoritma menyimulasikan ribuan probabilitas geometri bukaan dalam hitungan milidetik. Sistem secara matematis mencari satu titik sweet spot: posisi di mana modul fasad sukses menangkis penetrasi radiasi ekstrem (>1000 lux / pemicu ASE), namun tetap membuka celah spesifik agar cahaya difus (>300 lux / target sDA) bisa menyusup ke kedalaman ruang (Zou et al., 2025).
+
+Tahap Aktuasi (Respons Mekanis Dinamis): 
+
+Konfigurasi matematis paling optimal kemudian diekstrak menjadi sinyal perintah (data stream) menuju aktuator mekanis⁷—seperti motor servo atau aktuator linear—yang tertanam pada struktur selubung. Modul fasad kinetik akan merespons dengan berotasi, melipat, atau bergeser ke derajat presisi yang diperintahkan. Tarian koreografi fasad ini terus beradaptasi setiap jam mengikuti pergeseran matahari dari timur ke barat, mempertahankan ritme kenyamanan sirkadian manusia di dalam bangunan secara otomatis (Eltaweel & Su, 2024).
+
+Sistem ini menggabungkan prinsip refleksi, refraksi, dan difusi cahaya sehingga mampu memberikan performa pencahayaan yang efisien tanpa meningkatkan panas berlebih.
+
+Tipologi Pergerakan Fasad Kinetik
+
+Berdasarkan kinematika mekanisnya, mekanisme pergerakan fasad adaptif terbagi ke dalam tiga tipologi utama yang menentukan logika komputasi geometri dan efisiensi peneduhannya:
+
+Rotasi (Pivoting)
+
+Kisi-kisi atau sirip fasad (louver) berputar pada satu sumbu poros (vertikal maupun horizontal). Ini merupakan pendekatan yang paling efisien secara mekanikal dan perawatan untuk memotong sudut jatuh matahari (angle of incidence) yang tajam, sangat ideal untuk menyaring radiasi langsung di sisi timur dan barat.
+
+Pelipatan (Folding)
+
+Modul fasad bertransformasi melalui bidang lipat menyerupai prinsip origami tiga dimensi. Luasan bidang peneduh dapat direntangkan untuk memblokir silau secara maksimal saat radiasi matahari berada di puncak kritis, atau diciutkan secara ekstrem saat cuaca mendung agar bukaan kaca menerima cahaya difus seluas mungkin.
+
+Translasi (Sliding)
+
+Panel pelindung berpori bergeser secara linear (horizontal atau vertikal) di atas jalur rel fasad. Sistem ini bekerja dengan menggeser massa peneduh secara dinamis ke koordinat fasad yang paling terpapar silau, sementara area lainnya dibiarkan terbuka untuk mempertahankan akses visual ke luar bangunan.
+
+Tinjauan Khusus Community Hub
+
+Community Hub adalah infrastruktur sosial yang tangguh (resilient social infrastructure). Di tengah padatnya kawasan perkotaan di sekitar lahan eks-Stadion Mattoanging, fasilitas publik ini hadir bukan sekadar sebagai wadah interaksi komunal, melainkan juga berfungsi sebagai "kantong bernapas" (urban oasis) yang memulihkan kualitas lingkungan binaan kota Makassar (Setiawan & Lee, 2023).
+
+Tujuan Dan Fungsi Kantor Sewa
+
+Kehadiran Community Hub memiliki tujuan utama untuk merevitalisasi ruang kosong kota (urban voids) yang hilang menjadi pusat aktivitas publik yang produktif. Dalam perancangan arsitektur kontemporer, fasilitas ini memikul multi-fungsi yang saling terintegrasi:
+
+Fungsi Sosial dan Edukasi: Bertindak sebagai third space (ruang ketiga) yang inklusif di luar rumah dan tempat kerja. Ruang ini menyediakan fasilitas literasi terbuka (perpustakaan publik) dan area kolaborasi yang memecah batasan hierarki sosial warga Makassar (Putra et al., 2024).
+
+Fungsi Ekologis (Kenyamanan Lingkungan): Berperan sebagai urban oasis yang membantu menstabilkan iklim mikro setempat. Melalui integrasi fasad kinetik adaptif dan bukaan ruang spasial yang lebar, bangunan ini dirancang untuk mereduksi dampak Urban Heat Island di kawasan pesisir.
+
+Fungsi Ekonomi Kreatif: Menjadi wadah inkubasi bagi pelaku UMKM dan komunitas kreatif lokal. Tata ruang komunal yang dirancang saling silang (intersecting spaces) bertujuan memantik interaksi pertukaran gagasan dan aktivitas ekonomi mikro tanpa menghilangkan karakter terbukanya.
+
+Fungsi Representatif (Ikon Visual): Bangunan ini dirancang sebagai tengara (landmark) arsitektur modern Kota Makassar. Koreografi selubung fasad kinetik yang bergerak mengikuti lintasan matahari memberikan identitas visual (facade as a canvas) yang futuristik, responsif, dan kontekstual terhadap iklim tropis.
+
+Fungsi Adaptif: Memberikan fleksibilitas spasial tingkat tinggi. Tata ruang tanpa sekat masif (open plan) memungkinkan Community Hub ini beralih fungsi secara cepat—dari ruang baca yang tenang di siang hari menjadi area pertunjukan atau pameran komunitas pada sore dan malam hari..
+
+Faktor-Faktor Perancangan Community Hub Tropis
+
+Dalam merancang fasilitas publik berskala urban di kawasan iklim pesisir, terdapat enam faktor krusial yang menentukan keberhasilan performa ruang.
+
+Faktor Lokasi dan Aksesibilitas
+
+Berada di titik strategis eks-Stadion Mattoanging, aksesibilitas pejalan kaki (pedestrian-friendly) dan transisi yang mengundang dari jalan raya menuju area komunal adalah prioritas, guna merevitalisasi ruang kosong kota menjadi ruang publik aktif (Putra et al., 2024). Fasad bangunan bertindak sebagai filter visual yang mengintegrasikan tapak dengan dinamika kota di sekitarnya.
+
+Faktor Konstruksi dan Sistem Selubung Modular
+
+Meskipun konfigurasi ruang utama dapat dirancang secara fleksibel, selubung bangunan kinetik menuntut sistem modularitas yang presisi. Unit-unit modul standar berulang diperlukan untuk menjamin kepastian pabrikasi, meredam getaran mekanis aktuator motor secara merata, serta mempermudah penggantian komponen secara parsial saat perawatan (maintenance).
+
+Faktor Kenyamanan Visual dan Termal
+
+Kenyamanan pengguna merupakan parameter mutlak. Sistem fasad harus secara matematis memastikan nilai Spatial Daylight Autonomy (sDA) berada di atas ambang batas 300 lux, sementara indeks silau (Annual Sunlight Exposure/ASE) ditekan ketat di bawah 10% agar area baca dan kerja tetap nyaman digunakan sepanjang hari (Tabadkani et al., 2023).
+
+Faktor Efisiensi Energi dan Keberlanjutan
+
+Melalui pengendalian fasad adaptif berbasis komputasi, beban radiasi panas matahari (cooling load) dapat dipangkas secara pasif (Zou et al., 2025). Hal ini meminimalkan ketergantungan pada pendingin udara buatan dan lampu listrik pada jam-jam operasional produktif.
+
+Faktor Keamanan dan Keselamatan Publik
+
+Sebagai ruang komunal berkumpulnya massa, tata ruang wajib menyediakan jalur evakuasi terbuka yang intuitif sesuai standar keselamatan gedung (SNI). Material komponen fasad juga harus tahan terhadap korosi udara laut Makassar dan memenuhi standar ketahanan api.
+
+Faktor Estetika dan Identitas Ruang (Landmark)
+
+Transformasi geometri fasad yang menari merespons matahari menghadirkan ekspresi arsitektural yang dinamis (Setiawan & Lee, 2023). Estetika tidak lagi bersifat kosmetik tempelan, melainkan lahir secara alami dari kinerja adaptasi lingkungan.
+
+Klasifikasi Tata Ruang Community Hub
+
+Klasifikasi tata ruang pada Community Hub dikelompokkan ke dalam dua parameter spasial utama:
+
+Berdasarkan Tingkat Keterbukaan Iklim (Climatic Boundary):
+
+Kantor Tertutup (Closed Office)
+
+Setiap pekerja menempati ruang terpisah yang dibatasi oleh dinding atau sekat permanen. Tipe ini memberikan privasi dan fokus kerja tinggi, namun kurang efisien terhadap luas lantai. Biasanya digunakan pada perusahaan dengan sistem kerja formal dan hierarkis.
+
+Kantor Terbuka (Open Plan Office)
+
+Menggunakan ruang luas tanpa banyak sekat tetap. Tujuannya untuk meningkatkan komunikasi, fleksibilitas, dan efisiensi ruang. Namun, dibutuhkan perencanaan akustik dan pencahayaan yang baik agar tidak mengganggu produktivitas kerja.
+
+Kantor Modular (Modular Office)
+
+Mengadopsi sistem panel atau elemen ruang yang dapat dipindahkan sesuai kebutuhan. Sistem ini paling fleksibel untuk kantor sewa karena memungkinkan perubahan fungsi ruang tanpa renovasi besar. Layout modular juga mudah disesuaikan dengan sistem pencahayaan alami, seperti penerapan façade collector untuk mendukung efisiensi energi.
+
+2. Berdasarkan Fleksibilitas Layout Sosial (Functional Layout):
+
+Tata Ruang Bebas (Open Plan Layout)
+
+Area komunal luas tanpa partisi dinding masif. Menghubungkan fungsi literasi, area duduk, dan kafe secara mengalir (fluid), serta memastikan cahaya alami tersebar merata ke seluruh kedalaman lantai.
+
+Tata Ruang Adaptif/Modular (Flexible Layout)
+
+Memanfaatkan partisi lipat dan furnitur bergerak untuk memfasilitasi rekonfigurasi fungsi ruang secara instan sesuai kebutuhan acara komunitas.
+
+Tata Ruang Community Hub
+
+Tata ruang (spatial layout planning) pada Community Hub merupakan perencanaan penataan zona dan elemen ruang untuk menciptakan alur pergerakan yang mengalir (fluid), efisien, dan inklusif. Penataan ruang menjadi strategi pasif dalam mengoptimalkan kenyamanan termal, ventilasi silang, dan penetrasi cahaya alami dari selubung fasad kinetik (Putra et al., 2024).
+
+Pendekatan penataan ruang pada Mattoanging Community Hub mengadopsi tiga strategi spasial:
+
+Tata Ruang Terbuka Komunal (Open Communal Layout)
+
+Penataan ruang didasarkan pada fungsi kegiatan kerja. Setiap departemen ditempatkan secara berdekatan sesuai hubungan kerja (misalnya divisi keuangan dekat dengan manajer operasional). Pendekatan ini efisien untuk organisasi dengan struktur kerja yang jelas dan hierarkis.
+
+Tata Ruang Proses (Process Layout)
+
+Menekankan pada urutan alur kerja. Ruang-ruang diatur mengikuti tahapan kegiatan dari awal hingga akhir. Cocok diterapkan pada kantor dengan sistem administrasi atau pelayanan publik yang bersifat berurutan.
+
+Tata Ruang Fleksibel atau Modular (Flexible/Modular Layout)
+
+Tata ruang bersifat dinamis, memungkinkan perubahan konfigurasi tanpa mengganggu fungsi utama. Sistem ini banyak digunakan pada kantor sewa modern karena dapat disesuaikan dengan kebutuhan penyewa yang beragam. Penggunaan elemen modular seperti partisi geser, raised floor, dan panel multifungsi mendukung fleksibilitas serta mempermudah integrasi teknologi pencahayaan alami seperti façade collector.
+
+Tata ruang Mattoanging Community Hub secara menyeluruh dirancang untuk menyelaraskan orientasi aktivitas manusia dengan orientasi bukaan fasad kinetik di sisi timur dan barat, memastikan seluruh ruang produktif memperoleh pasokan cahaya alami yang merata tanpa terganggu oleh radiasi panas matahari Makassar.
+
+Tinjauan Khusus Pencahayaan Alami dan Machine Learning
+
+Pencahayaan alami dalam perancangan arsitektur tropis bukan sekadar upaya menerangi ruang dalam, melainkan strategi pasif mendasar untuk menjaga ritme biologis sirkadian manusia dan memangkas konsumsi energi gedung perkotaan (Nugroho et al., 2022). Di bawah paparan matahari khatulistiwa Kota Makassar, pemanfaatan cahaya alami menghadapi dilema spasial: ruang membutuhkan cahaya langit yang melimpah untuk menunjang aktivitas membaca dan bekerja, namun harus secara agresif menangkal radiasi sinar langsung yang membawa beban termal dan silau visual.
+
+Menurut Sutanto dan Raharjo (2020, hlm. 59), pencahayaan dalam bangunan kantor dapat dibedakan menjadi dua jenis utama, yaitu:
+
+Pencahayaan Alami (Natural Lighting)
+
+Pencahayaan alami berasal dari sinar matahari yang masuk melalui bukaan seperti jendela, skylight, atau façade kaca. Pemanfaatan cahaya alami yang optimal mampu mengurangi penggunaan energi listrik sekaligus meningkatkan kenyamanan visual penghuni. Selain itu, pencahayaan alami dapat memengaruhi ritme sirkadian pekerja sehingga meningkatkan produktivitas dan kesejahteraan (Rinaldi, 2021, hlm. 78). Dalam konteks desain façade modular, elemen façade dapat berfungsi sebagai light collector yang mengarahkan dan memfilter cahaya ke ruang kerja sesuai kebutuhan.
+
+Pencahayaan Buatan (Artificial Lighting)
+
+Pencahayaan buatan digunakan untuk melengkapi cahaya alami, terutama pada area dengan intensitas cahaya rendah atau pada malam hari. Sistem pencahayaan buatan modern kini banyak menggunakan lampu LED hemat energi yang dapat diatur berdasarkan daylight sensor untuk menghemat konsumsi listrik (Lim, 2020, hlm. 121). Pengaturan intensitas dan distribusi cahaya buatan perlu memperhatikan standar kenyamanan visual dan tidak menimbulkan silau (glare) bagi pengguna.
+
+Karena pada penilitian ini penulis lebih fokus ke arah pencahayaan alami, oleh karena itu penulis akan memberikan penjelasan lanjutan mengenai pencahaayan alami.
+
+Pencahayaan Alami
+
+1. Definisi Pencahayaan Alami
+
+Pencahayaan alami adalah sistem penerangan yang memanfaatkan cahaya matahari yang masuk ke dalam bangunan melalui bukaan seperti jendela, skylight, atrium, atau sistem reflektif façade. Menurut Sutanto dan Raharjo (2020, hlm. 59), pencahayaan alami merupakan strategi pasif yang dirancang untuk meminimalkan konsumsi energi listrik sekaligus meningkatkan kenyamanan visual penghuni. Sementara itu, Rinaldi (2021, hlm. 77) menegaskan bahwa pencahayaan alami memiliki peran penting dalam desain bangunan tropis dan modern karena mampu menyesuaikan intensitas dan arah cahaya sesuai kebutuhan ruang kerja serta kondisi iklim setempat.
+
+2. Kelebihan dan Kekurangan Pencahayaan Alami
+
+Menurut Priyono (2021, hlm. 81–83), sistem pencahayaan alami memiliki beberapa keunggulan sekaligus keterbatasan yang perlu diperhitungkan dalam desain arsitektur kantor sewa sebagai berikut:
+
+Kelebihan:
+
+Efisiensi energi: Mengurangi kebutuhan penerangan buatan pada siang hari.
+
+Meningkatkan kenyamanan visual: Memberikan pencahayaan yang lebih lembut dan alami.
+
+Dampak psikologis positif: Cahaya alami meningkatkan produktivitas dan kesejahteraan pekerja.
+
+Menunjang konsep green building: Mengurangi emisi karbon dan konsumsi listrik.
+
+Kekurangan:
+
+Fluktuasi intensitas cahaya: Tergantung kondisi cuaca dan waktu.
+
+Potensi panas berlebih (glare dan heat gain): Dapat meningkatkan suhu ruang jika tidak dikendalikan.
+
+Keterbatasan orientasi dan lokasi: Tidak semua ruang dapat memperoleh pencahayaan alami yang cukup.
+
+Memerlukan sistem kontrol tambahan: Seperti shading, louvers, atau façade adaptif agar optimal.
+
+3. Jenis-Jenis Pencahayaan Alami
+
+Menurut Lim (2020, hlm. 115–118), pencahayaan alami dapat diklasifikasikan berdasarkan cara cahaya masuk dan penyebarannya ke dalam ruang, yaitu:
+
+Pencahayaan Langsung (Direct Daylighting):
+
+Cahaya matahari langsung masuk melalui jendela atau bukaan besar. Cocok untuk ruang dengan orientasi utara–selatan di wilayah tropis.
+
+Pencahayaan Tidak Langsung (Indirect Daylighting):
+
+Cahaya yang masuk melalui pantulan dari permukaan reflektif seperti dinding, langit-langit, atau light shelf. Menghasilkan pencahayaan merata tanpa silau.
+
+Pencahayaan Difus (Diffuse Daylighting):
+
+Cahaya yang disebarkan oleh lapisan translusen (seperti kaca buram, diffuser, atau material ETFE). Umumnya digunakan untuk skylight atau façade modular.
+
+Pencahayaan Reflektif (Reflected Daylighting):
+
+Cahaya diarahkan menggunakan reflektor, panel optik, atau sistem façade collector agar menjangkau area dalam bangunan. Teknologi ini sering digunakan dalam sistem façade modular modern (Rahardjo, 2023, hlm. 69).
+
+4. Faktor-Faktor yang Mempengaruhi Pencahayaan Alami
+
+Menurut Santoso (2022, hlm. 94–95), terdapat beberapa faktor utama yang memengaruhi tingkat pencahayaan alami dalam bangunan kantor:
+
+Orientasi Bangunan:
+Menentukan arah datangnya sinar matahari; orientasi utara–selatan direkomendasikan untuk mengurangi panas berlebih.
+
+Ukuran dan Posisi Bukaan:
+Semakin besar dan strategis posisi bukaan, semakin banyak cahaya yang masuk.
+
+Material dan Warna Permukaan Interior:
+Warna terang dan permukaan reflektif meningkatkan penyebaran cahaya alami.
+
+Kondisi Cuaca dan Lingkungan Sekitar:
+Adanya bayangan dari bangunan lain atau pepohonan dapat memengaruhi intensitas pencahayaan alami.
+
+Elemen Pengendali Cahaya (Shading Devices):
+Seperti kanopi, kisi-kisi, atau façade modular yang berfungsi menahan silau dan panas matahari berlebih.
+
+5. Standar Pencahayaan Alami untuk Bangunan Kantor Menurut SNI
+
+Standar pencahayaan alami diatur dalam SNI 6197:2011 tentang Konservasi Energi pada Sistem Pencahayaan, yang memberikan rekomendasi tingkat pencahayaan (illuminance) untuk berbagai jenis ruang kerja.
+
+Menurut SNI 6197:2011 (BSN, hlm. 8–9), nilai tingkat iluminasi alami yang direkomendasikan untuk bangunan kantor adalah sebagai berikut:
+
+Studi Preseden
+
+Berisi tentang literatur guna untuk studi banding mengenai teknologi relevan yang digunakan oleh penulis pada skripsi perancangan ini.
+
+Studi Preseden Bangunan Facade Collector
+
+1. Bosowa Tower, Makassar – Indonesia
+
+Bosowa Tower merupakan salah satu gedung perkantoran tinggi di Makassar yang telah mengaplikasikan elemen façade dengan sistem pengarah cahaya alami. Bangunan ini memanfaatkan desain façade ganda dengan material kaca low-e dan shading vertikal untuk mengontrol intensitas cahaya matahari masuk ke ruang kerja. Sistem façade-nya berfungsi sebagai collector cahaya yang mengarahkan pencahayaan alami ke dalam bangunan, mengurangi penggunaan energi listrik pada siang hari sekaligus meminimalkan panas berlebih (solar heat gain).
+
+Menurut Rahman dan Yusuf (2022), sistem façade semacam ini terbukti mampu meningkatkan efisiensi energi hingga 25% pada jam kerja siang hari serta meningkatkan kenyamanan visual penghuni kantor (hlm. 42).
+
+2. Al Bahar Towers, Abu Dhabi – Uni Emirat Arab
+
+Al Bahar Towers dikenal sebagai salah satu proyek pionir dalam penerapan façade mashrabiya adaptif yang berfungsi sebagai daylight collector. Sistem façade-nya menggunakan sensor otomatis untuk membuka dan menutup panel segitiga berdasarkan intensitas cahaya matahari. Teknologi ini memungkinkan reduksi beban pendingin hingga 50% tanpa mengurangi kualitas pencahayaan alami di ruang kerja.
+
+Menurut Baker dan Steemers (2021), konsep façade dinamis tersebut bekerja secara pasif dan aktif dalam memanfaatkan cahaya alami sekaligus menjaga suhu ruang dalam tetap stabil (hlm. 58).
+
+3. The Edge, Amsterdam – Belanda
+
+Gedung The Edge merupakan salah satu bangunan perkantoran paling efisien di dunia dengan sistem façade light-redirecting collector. Struktur façade-nya terdiri atas panel kaca reflektif yang mengarahkan cahaya alami jauh ke dalam ruang kerja, dilengkapi sistem sensor otomatis untuk mengatur bukaan berdasarkan orientasi matahari.
+
+Menurut Ochoa et al. (2020), penerapan façade collector pada The Edge berhasil mengoptimalkan daylight factor hingga 70% di area tengah bangunan yang biasanya sulit dijangkau cahaya alami (hlm. 33).
+
+Studi Preseden Bangunana Facade Modular
+
+1. Velux Modular Skylight – Exeter College, Oxford, Inggris
+
+Bangunan aula utama Exeter College menggunakan sistem Velux Modular Skylight sebagai elemen façade atap. Sistem modular ini dirancang untuk mengalirkan dan menyebarkan cahaya alami secara merata ke seluruh ruangan besar tanpa menghasilkan panas berlebih.
+
+Menurut Velux Commercial (2022), sistem modular skylight ini meningkatkan pencahayaan alami sebesar 45% dibanding sistem skylight konvensional, sekaligus mempertahankan kenyamanan termal ruang kerja (hlm. 17).
+
+2. Bloomberg European Headquarters, London – Inggris
+
+Gedung kantor Bloomberg mengadopsi façade modular dengan panel kaca ganda berinsulasi yang dapat dibuka sebagian untuk sirkulasi alami. Setiap modul façade dirancang dengan bronze fins sebagai pengarah cahaya, yang berfungsi mengontrol arah datangnya sinar matahari agar tetap nyaman secara visual.
+
+Menurut Foster + Partners (2021), penggunaan façade modular ini mengurangi konsumsi energi pencahayaan hingga 35% dan menjaga tingkat iluminasi alami sesuai standar kantor internasional (hlm. 22).
+
+3. Harpa Concert Hall and Conference Centre, Reykjavik – Islandia
+
+Meskipun berfungsi sebagai bangunan publik, Harpa Concert Hall menggunakan façade modular berbentuk prisma kaca sebagai elemen utama pencahayaan alami. Sistem façade-nya terdiri atas modul kaca ganda dengan lapisan reflektif yang memantulkan dan memecah cahaya alami secara dinamis.
+
+Menurut Birkir et al. (2020), konfigurasi modular façade ini memungkinkan penghematan energi pencahayaan hingga 40% serta menciptakan efek visual dinamis di dalam ruang (hlm. 64).
+
+
+METODE PENELITIAN
+
+Jenis Pembahasan
+
+Jenis pembahasan yang diperlukan dan digunakan oleh penulis adalah jenis penelitian kuantitatif deskriptif yang bertujuan untuk mengukur atau menguji segala data numerik baik dalam analisis maupun simulasi yang akan dilakukan kedepannya yang berhubungan dengan Desain Bangunan Kantor Sewa Di Makassar Dengan Sistem Facade Modular.
+
+Waktu Dan Lokasi Pengumpulan Data
+
+Lokasi pengumpulan data perancangan ini adalah Laboratorium Sains Arsitektur Fakultas Teknik Universitas Hasanuddin. Proses pengumpulan data, simulasi dan analisis data hingga kesimpulan dari skripsi ini dimulai sejak september 2025.
+
+Teknik Pengumpulan Data
+
+Teknik pengumpulan data yang akan dipakai penulis dalam proses pengumupulan data in ada beberapa metode yaitu: 
+
+Studi literatur 
+
+Pada analisis dokumen ini, penulis mengumpulkan beberapa data dari dokumen yang dikumpulkan dari beberapa sumber berikut.
+
+Melalui analisis laporan penelitian (research report analysis), penulis mengumpulkan data melalui penelitian atau riset yang sudah diterbitkan atau dihasilkan oleh lembaga penelitian, organisasi atau pemerintah. Guna untuk memberikan wawasan yang relevan terkait penulisan skripsi ini.
+
+Melalui studi kasus, pendekatan ini melibatkan riset mendalam tentang satu atau beberapa kasus yang relevan melalui jurnal atau video, yang berguna untuk menambah wawasan tentang fenomena yang diangkat oleh penulis dalam skripsi ini.
+
+Pengukuran dan Uji (measurement and testing), Melalui tes kinerja (performance test), penggunaan aplikasi simulasi seperti Ecotect dan Radiance yang nantinya akan dipakai untuk menguji material yang relevan untuk fenomena pada skripsi ini.
+
+Analisis Data
+
+Dalam kasus penilitian kali ini penulis mengumpulkan wawasan atau data relevan yang diperlukan melalui dokumen, studi kasus, buku dan jurnal dan lain-lain guna untuk mendukung simulasi yang nantinya akan dipakai untuk mengeluarkan data-data yang independen untuk menjawab rumusan masalah atas fenomena yang ada pada skripsi ini. Kemudian data yang keluar akan dianalisis oleh penulis akan dipakai untuk membuat kesimpulan pada skirpsi kali ini.
+
+Kerangka Berpikir
+
+DAFTAR PUSTAKA
+
+Banerjee, S., Dutta, A., & Choudhury, S. (2020). Thermal performance of Martian regolith as construction material. Advances in Space Research, 65(1), 1–10. Elsevier. https://doi.org/10.1016/j.asr.2019.09.010
+
+Cesaretti, G., Dini, E., De Kestelier, X., Colla, V., & Pambaguian, L. (2014). Building components for an outpost on the lunar soil by means of a novel 3D printing technology. Acta Astronautica, 93, 430–450. Elsevier. https://doi.org/10.1016/j.actaastro.2013.07.034
+
+Chintakrinda, K., et al. (2020). Thermal management challenges in extraterrestrial habitats: A review. Frontiers in Mechanical Engineering, 6, 1–10. https://doi.org/10.3389/fmech.2020.00001
+
+Farid, M. M., Khudhair, A. M., Razack, S. A. K., & Al-Hallaj, S. (2004). A review on phase change energy storage: Materials and applications. Energy Conversion and Management, 45(9–10), 1597–1615. https://doi.org/10.1016/j.enconman.2003.09.015
+
+Howe, A. S., & Sherwood, B. (2009). Out of this world: The new field of space architecture. Reston, VA: American Institute of Aeronautics and Astronautics. https://doi.org/10.2514/4.102400
+
+Kenisarin, M., & Mahkamov, K. (2016). Salt hydrates as latent heat storage materials: Thermophysical properties and costs. Solar Energy Materials and Solar Cells, 145, 255–286. Elsevier. https://doi.org/10.1016/j.solmat.2015.10.029
+
+Kuznik, F., David, D., Johannes, K., & Roux, J. J. (2011). A review on phase change materials integrated in building walls. Renewable and Sustainable Energy Reviews, 15(1), 379–391. Elsevier. https://doi.org/10.1016/j.rser.2010.08.019
+
+Mellon, M. T., & Jakosky, B. M. (1995). The distribution and behavior of Martian ground ice during past and present epochs. Journal of Geophysical Research: Planets, 100(E2), 401–418. American Geophysical Union. https://doi.org/10.1029/94JE03080
+
+Mika, Ł., Radomska, E., Sztekler, K., Gołdasz, A., & Zima, W. (2025). Review of selected PCMs and their applications in the industry and energy sector. Energies, 18(5), 1233. MDPI. https://doi.org/10.3390/en18051233
+
+NASA. (2021). 3D-Printed habitat challenge. National Aeronautics and Space Administration. https://www.nasa.gov/3dphabitat
+
+National Academies of Sciences, Engineering, and Medicine. (2019). A strategy for human exploration of Mars. Washington, DC: The National Academies Press. https://doi.org/10.17226/25213
+
+Sharma, A., Tyagi, V. V., Chen, C. R., & Buddhi, D. (2009). Review on thermal energy storage with phase change materials and applications. Renewable and Sustainable Energy Reviews, 13(2), 318–345. Elsevier. https://doi.org/10.1016/j.rser.2007.10.005
+
+Zalba, B., Marín, J. M., Cabeza, L. F., & Mehling, H. (2003). Review on thermal energy storage with phase change: Materials, heat transfer analysis and applications. Applied Thermal Engineering, 23(3), 251–283. Elsevier. https://doi.org/10.1016/S1359-4311(02)00192-8
+
+AI SpaceFactory. (2019). MARSHA: NASA 3D Printed Habitat Challenge Winner. Retrieved from https://aispacefactory.com/marsha
+
+LOGBOOK PENELITIAN
+
+PESAN DARI PROF LUNA: SAYA BISA SAJA MENGENDALIKAN KOMPUTERMU DARI JARAK JAUH. TAPI SAYA BUKAN ASISTEN PRIBADIMU UNTUK MENGEDIT MARGIN DAN LOGO KAMPUS DI WORD. BACA INSTRUKSI SEBELUMNYA DAN LAKUKAN SENDIRI SEKARANG!

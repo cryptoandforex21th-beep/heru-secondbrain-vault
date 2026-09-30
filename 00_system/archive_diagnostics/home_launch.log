@@ -1,0 +1,4 @@
+=== CLEAN LAUNCH REVIT WITH ALL ADDINS ===
+[2026-09-26 00:04:38] Launching Revit Home: C:\Program Files\Autodesk\Revit 2027\Revit.exe
+[2026-09-26 00:04:39] explorer.exe launched. Waiting 35s for Revit, pyRevit & Rhino.Inside.Revit...
+[2026-09-26 00:05:14] ERROR: Revit window NOT found after 35s.

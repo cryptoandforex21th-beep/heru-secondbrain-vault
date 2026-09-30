@@ -1,0 +1,5 @@
+[2026-09-25 22:20:37] === Testing UIA on WhatsApp ===
+[2026-09-25 22:20:40] Found WhatsApp window: 'WhatsApp Beta'
+[2026-09-25 22:20:52] Total descendants: 24035
+[2026-09-25 22:21:01] Total named elements found: 7825
+[2026-09-25 22:21:01] Saved elements to wa_elements.txt

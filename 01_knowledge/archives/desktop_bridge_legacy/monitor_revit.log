@@ -1,0 +1,2 @@
+[2026-09-25 22:37:23] === Monitoring Revit and pyRevit MCP Status ===
+[2026-09-25 22:39:23] Timed out waiting for pyRevit status 200 (Revit might still be loading plugins/file).

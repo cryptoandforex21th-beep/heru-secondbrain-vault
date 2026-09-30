@@ -1,0 +1,17 @@
+--- RUMUSAN MASALAH ITEMS ---
+[129] ListString='' LeftIndent=0.0 Text='Berdasarkan latar belakang di atas, rumusan masalah dalam pe'
+[130] ListString='' LeftIndent=18.0 Text='Bagaimana merancang Adaptive Kinetic Facade pada bangunan ka'
+[131] ListString='' LeftIndent=18.0 Text='Bagaimana mengintegrasikan metode Computational Design (desa'
+[132] ListString='1.3' LeftIndent=0.0 Text='Bagaimana wujud tata ruang dan bentuk arsitektur kantor sewa'
+
+--- TUJUAN ITEMS ---
+[135] ListString='1.1.1' LeftIndent=0.0 Text='Tujuan\r'
+[136] ListString='' LeftIndent=18.0 Text='Menghasilkan rancangan bangunan kantor sewa di Makassar yang'
+[137] ListString='1.1.2' LeftIndent=0.0 Text='Membuktikan secara komputasional bahwa pergerakan fasad kine'
+
+--- BATASAN ITEMS ---
+[140] ListString='1.1' LeftIndent=0.0 Text='Batasan Pembahasan dan Lingkup Pembahasan\r'
+[142] ListString='1.1.1' LeftIndent=0.0 Text='Batasan Pembahasan\r'
+[144] ListString='1.' LeftIndent=36.0 Text='Penelitian difokuskan pada penerapan sistem façade collector'
+[145] ListString='2.' LeftIndent=36.0 Text='Skala bangunan yang dirancang adalah bangunan kantor berting'
+[146] ListString='3.' LeftIndent=36.0 Text='Analisis performa dibatasi pada aspek daylighting (pencahaya'

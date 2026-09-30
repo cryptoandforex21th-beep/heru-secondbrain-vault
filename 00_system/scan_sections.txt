@@ -1,0 +1,16 @@
+67: BAB.I PENDAHULUAN	114
+68: 1.1 Latar Belakang	114
+102: DAFTAR PUSTAKA	136
+123: PENDAHULUAN
+124: Latar Belakang
+132: Berdasarkan latar belakang yang telah dikemukakan sebelumnya, adapun permasalahan yang akan dijadikan sebagai acuan dan isi pembahasan yakni sebagai berikut:
+157: Pada lingkup pembahasan akan dibahas terkait dengan faktor-faktor yang ada di latar belakang hingga pada tujuan penulisan Lingkup pembahasaan dapat diuraikan sebagai berikut:
+164: BAB I. PENDAHULUAN
+166: BAB II. METODE PERANCANGAN
+168: BAB III ANALISIS DATA PERANCANGAN
+169: Bab ini berisi pengolahan dan interpretasi data yang telah dikumpulkan untuk mendapatkan dasar konseptual dalam merancang bangunan. Isinya meliputi hasil analisis terhadap tapak, iklim, kebutuhan ruang, sistem pencahayaan alami (façade collector modular), serta aspek fungsional dan estetika bangunan yang nantinya menjadi landasan penyusunan konsep perancangan.
+170: BAB IV KONSEP PERANCANGAN
+171: Pada bab ini akan dipaparkan kesimpulan dari seluruh proses perancangan yang telah dilakukan. Bagaimana permasalahan yang sebelumnya diangkat mencapai titik temu dan dijelaskan pula bagaimana akhir dari proses penyelesaian dari rumusan masalah yang diangkat. Pada bab ini juga dimuat saran yang dapat diberikan untuk perancangan atau mengembangkan lebih lanjut perancangan terkait dengan topik yang dibahas pada tugas akhir ini.
+172: BAB V PENUTUP
+173: Pada bab ini akan dipaparkan kesimpulan dari seluruh proses perancangan yang telah dilakukan. Bagaimana permasalahan yang sebelumnya diangkat mencapai titik temu dan dijelaskan pula bagaimana akhir dari proses penyelesaian dari rumusan masalah yang diangkat. Pada bab ini juga dimuat saran yang dapat diberikan untuk penelitian atau mengembangkan lebih lanjut penelitian terkait dengan topik yang dibahas pada tugas akhir ini.
+398: DAFTAR PUSTAKA

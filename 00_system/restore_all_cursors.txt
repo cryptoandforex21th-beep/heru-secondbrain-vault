@@ -1,0 +1,11 @@
+Arrow: 1
+Wait: 1
+UpArrow: 1
+SizeNWSE: 1
+SizeNESW: 1
+SizeWE: 1
+SizeNS: 1
+SizeAll: 1
+No: 1
+Hand: 1
+AppStarting: 1

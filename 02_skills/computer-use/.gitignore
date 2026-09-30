@@ -1,0 +1,6 @@
+*.log
+*.png
+*.tmp
+*.flag
+*.pid
+*.port

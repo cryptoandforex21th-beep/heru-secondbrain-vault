@@ -1,0 +1,7 @@
+[2026-09-25 22:21:36] === Finding WinUI 3 Elements ===
+[2026-09-25 22:21:37] Bridge element: Microsoft.UI.Content.DesktopChildSiteBridge, children count: 2
+[2026-09-25 22:21:37] L1 Child 0: Pane | Name: '(114) WhatsApp' | Class: Chrome_WidgetWin_1
+[2026-09-25 22:21:37]   L2 Child 0: Pane | Name: '' | Class: Intermediate D3D Window
+[2026-09-25 22:21:37]   L2 Child 1: Pane | Name: '(114) WhatsApp - Web content' | Class: BrowserRootView
+[2026-09-25 22:21:37] L1 Child 1: Pane | Name: '' | Class: InputSiteWindowClass
+[2026-09-25 22:21:37]   L2 Child 0: Pane | Name: '' | Class: Microsoft.UI.Xaml.Controls.WebView2

@@ -1,0 +1,1 @@
+explorer.exe D:\SecondBrain\01_knowledge\projects\skripsi_facade_collector_unhas\NOTEBOOKLM_SOURCES

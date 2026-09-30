@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>🏝️ SecondBrain Island HQ — 2.5D Clash of Clans Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Zen+Kaku+Gothic+New:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #73d1f0;
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
+    #viewport-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      touch-action: none;
+      overflow: hidden;
+    }
+    #island-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: grab;
+    }
+    #island-canvas:active {
+      cursor: grabbing;
+    }
+
+    /* TOP HEADER HUD (COMPACT & MODERN) */
+    .top-bar {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .hud-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 2px solid #ffffff;
+      border-radius: 999px;
+      padding: 8px 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hud-title-box {
+      display: flex;
+      flex-direction: column;
+    }
+    .hud-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #1e293b;
+      letter-spacing: -0.2px;
+    }
+    .hud-subtitle {
+      font-size: 10px;
+      font-weight: 700;
+      color: #0284c7;
+    }
+    .hud-stats-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: auto;
+    }
+    .pill-btn {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border: 2px solid #ffffff;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+      transition: all 0.15s ease;
+    }
+    .pill-btn:hover {
+      transform: translateY(-2px);
+      background: #ffffff;
+    }
+    .pill-btn.primary {
+      background: #10b981;
+      color: #ffffff;
+      border-color: #34d399;
+    }
+
+    /* BOTTOM CONTROLS DOCK (PRESET NAVIGATION) */
+    .bottom-dock {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(20px);
+      border: 2px solid #ffffff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+      z-index: 10;
+      max-width: 95vw;
+      overflow-x: auto;
+    }
+    .dock-btn {
+      background: transparent;
+      border: none;
+      color: #475569;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .dock-btn:hover {
+      background: rgba(0, 0, 0, 0.05);
+      color: #0f172a;
+    }
+    .dock-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+    }
+    .dock-sep {
+      width: 1px;
+      height: 18px;
+      background: #cbd5e1;
+      margin: 0 4px;
+    }
+
+    /* AGENT INSPECTOR BOTTOM SHEET (MODAL) */
+    .agent-sheet {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border-top-left-radius: 28px;
+      border-top-right-radius: 28px;
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2);
+      padding: 24px;
+      z-index: 20;
+      transform: translateY(105%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .agent-sheet.open {
+      transform: translateY(0);
+    }
+    .sheet-handle {
+      width: 44px;
+      height: 5px;
+      background: #cbd5e1;
+      border-radius: 999px;
+      margin: 0 auto 16px;
+    }
+    .sheet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .sheet-avatar {
+      font-size: 36px;
+      background: #f1f5f9;
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #e2e8f0;
+    }
+    .sheet-info {
+      flex: 1;
+      margin-left: 14px;
+    }
+    .sheet-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .sheet-role {
+      font-size: 12px;
+      font-weight: 700;
+      color: #64748b;
+    }
+    .sheet-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      background: #dcfce7;
+      color: #15803d;
+      margin-top: 4px;
+    }
+    .sheet-close {
+      background: #f1f5f9;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: 800;
+      color: #64748b;
+    }
+    .sheet-desc {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #475569;
+      margin-bottom: 16px;
+      background: #f8fafc;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid #e2e8f0;
+    }
+    .sheet-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 14px;
+      border: none;
+      background: #0284c7;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+    }
+
+    /* MINI MAP FLOATING OVERVIEW */
+    .mini-badge {
+      position: absolute;
+      top: 76px;
+      left: 16px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 8px 14px;
+      color: #f8fafc;
+      font-size: 11px;
+      font-weight: 700;
+      z-index: 10;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dot-live {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #22c55e;
+    }
+
+    @media (max-width: 640px) {
+      .hud-title { font-size: 11px; }
+      .pill-btn { padding: 6px 12px; font-size: 11px; }
+      .bottom-dock { bottom: 12px; padding: 4px; }
+      .dock-btn { padding: 6px 10px; font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="viewport-container">
+    <canvas id="island-canvas"></canvas>
+
+    <!-- TOP HEADER HUD -->
+    <div class="top-bar">
+      <div class="hud-card">
+        <span style="font-size:20px;">🏝️</span>
+        <div class="hud-title-box">
+          <div class="hud-title">SecondBrain Island HQ</div>
+          <div class="hud-subtitle">2.5D Pre-rendered Engine · Zero GPU Lag</div>
+        </div>
+      </div>
+
+      <div class="hud-stats-group">
+        <button class="pill-btn primary" onclick="jumpTo('plaza')">🌸 Central Plaza</button>
+        <button class="pill-btn" onclick="toggleAtmosphere()">☀️ Siang/Sore</button>
+      </div>
+    </div>
+
+    <!-- LIVE STATUS BADGE -->
+    <div class="mini-badge">
+      <div class="dot-live"></div>
+      <span>17 Bot Aktif · Memori: ~18 MB · 120 FPS</span>
+    </div>
+
+    <!-- BOTTOM CAMERA DOCK -->
+    <div class="bottom-dock">
+      <button class="dock-btn active" onclick="setPreset('overview', this)">🗺️ Seluruh Pulau</button>
+      <button class="dock-btn" onclick="setPreset('div1', this)">📚 Divisi 01 Akademik</button>
+      <button class="dock-btn" onclick="setPreset('div2', this)">🏗️ Divisi 02 BIM</button>
+      <button class="dock-btn" onclick="setPreset('div3', this)">📈 Divisi 03 Trading</button>
+      <button class="dock-btn" onclick="setPreset('div4', this)">💻 Divisi 04 Web</button>
+      <div class="dock-sep"></div>
+      <button class="dock-btn" onclick="setPreset('executive', this)">⛩️ Gazebo @Ai</button>
+      <button class="dock-btn" onclick="setPreset('cafe', this)">☕ The Roost Cafe</button>
+    </div>
+
+    <!-- AGENT DETAILS BOTTOM SHEET -->
+    <div class="agent-sheet" id="agent-sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <div class="sheet-avatar" id="sheet-emoji">🦉</div>
+        <div class="sheet-info">
+          <div class="sheet-name" id="sheet-name">@Luna</div>
+          <div class="sheet-role" id="sheet-role">Koordinator Divisi 01 Akademik</div>
+          <div class="sheet-badge" id="sheet-status">🟢 Bekerja di Meja</div>
+        </div>
+        <button class="sheet-close" onclick="closeSheet()">✕</button>
+      </div>
+      <div class="sheet-desc" id="sheet-desc">
+        Sedang memvalidasi rujukan jurnal Scopus Q1 & standar SNI 03-6197 untuk bab II skripsi.
+      </div>
+      <button class="sheet-btn" onclick="sendTask()">💬 Beri Tugas via WhatsApp</button>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. CONFIGURATION & WORLD DIMENSIONS (MATCHING EXPANSIVE SKETCHFAB MAP)
+    // =========================================================================
+    const canvas = document.getElementById('island-canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Massive 2.5D World Map (3000 x 2200 pixels)
+    const WORLD_W = 3000;
+    const WORLD_H = 2200;
+
+    // Viewport transform
+    let scale = 0.55;
+    let panX = 0;
+    let panY = 0;
+    let isDragging = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    // Time of day (Day vs Sunset)
+    let isSunset = false;
+
+    // =========================================================================
+    // 2. AGENTS DATA (17 SECONDBRAIN AGENTS WITH PRECISE DESK COORDINATES)
+    // =========================================================================
+    const AGENTS = [
+      // Executive Tier 3
+      { id: 'ai', name: '@Ai (PM)', role: 'Chief of Staff & SecondBrain Core', emoji: '🐰', x: 1500, y: 380, div: 'exec', status: 'Mengawasi Seluruh Pulau', color: '#ffb7c5' },
+
+      // Divisi 01: Riset Akademik (@Luna & Tim)
+      { id: 'luna',   name: '@Luna',   role: 'Koordinator Riset Akademik', emoji: '🦉', x: 880,  y: 820, div: 'div1', status: 'Audit Sitasi SNI 03-6197', color: '#a855f7' },
+      { id: 'kutu',   name: '@Kutu',   role: 'Penyisir Jurnal Scopus',     emoji: '🐛', x: 1000, y: 820, div: 'div1', status: 'Daur Ulang Sitasi Mayhoub', color: '#c084fc' },
+      { id: 'crayon', name: '@Crayon', role: 'Visualisasi 600 DPI',        emoji: '🖍️', x: 880,  y: 960, div: 'div1', status: 'Plotting Kurva Lux Solar Tube', color: '#fb923c' },
+      { id: 'kucing', name: '@Kucing', role: 'Sanitasi AI Voice',          emoji: '🐱', x: 1000, y: 960, div: 'div1', status: 'Humanizing Paragraf Turnitin', color: '#f472b6' },
+      { id: 'mata',   name: '@Mata',   role: 'Perangkum Video YouTube',    emoji: '👁️', x: 940,  y: 1100, div: 'div1', status: 'Ekstrak Transcript Tutorial', color: '#38bdf8' },
+
+      // Divisi 02: BIM & Konstruksi (@Kaktus & Tim)
+      { id: 'kaktus', name: '@Kaktus', role: 'Koordinator BIM & Revit',    emoji: '🌵', x: 1380, y: 820, div: 'div2', status: 'Inspeksi Model Menara Dynamo', color: '#22c55e' },
+      { id: 'tabrak', name: '@Tabrak', role: 'Clash Detection Specialist',emoji: '💥', x: 1500, y: 820, div: 'div2', status: 'Zero Clash Pipa vs Struktur', color: '#4ade80' },
+      { id: 'cuan',   name: '@Cuan',   role: 'Estimator RAB & AHSP',       emoji: '💰', x: 1440, y: 960, div: 'div2', status: 'Kalkulasi QTO Material Makassar', color: '#facc15' },
+
+      // Divisi 03: Trading & Quant (@MasAmba & Tim)
+      { id: 'masamba',name: '@MasAmba',role: 'Lead Market Analyst',        emoji: '🐺', x: 1820, y: 820, div: 'div3', status: 'Monitoring FVG & Order Block BTC', color: '#ea580c' },
+      { id: 'lilin',  name: '@Lilin',  role: 'Chartist & Price Action',    emoji: '🕯️', x: 1940, y: 820, div: 'div3', status: 'Analisa RSI & Divergence H4', color: '#f97316' },
+      { id: 'bandar', name: '@Bandar', role: 'Whale Flow Tracker',         emoji: '🐋', x: 1880, y: 960, div: 'div3', status: 'Funding Rate Net-Neutral', color: '#64748b' },
+
+      // Divisi 04: Software & Web (@Mochi & Tim)
+      { id: 'mochi',  name: '@Mochi',  role: 'Frontend Architect',         emoji: '🐶', x: 2260, y: 820, div: 'div4', status: 'Build Layout Mobile GradiEnt', color: '#0284c7' },
+      { id: 'piksel', name: '@Piksel', role: 'UI/UX & Cult-UI Lead',       emoji: '🎨', x: 2380, y: 820, div: 'div4', status: 'Design Komponen Taktil', color: '#38bdf8' },
+      { id: 'kunci',  name: '@Kunci',  role: 'Database & Security Lead',   emoji: '🔑', x: 2260, y: 960, div: 'div4', status: 'Skema RLS Supabase Ready', color: '#64748b' },
+      { id: 'botik',  name: '@Botik',  role: 'Quant Algorithmic Bot',      emoji: '🤖', x: 2380, y: 960, div: 'div4', status: 'Python Backtest Sharpe 2.14', color: '#84cc16' },
+      { id: 'rem',    name: '@Rem',    role: 'Risk Management Engine',     emoji: '🛑', x: 2320, y: 1100, div: 'div4', status: 'Lock Batas Resiko 1.5% Modal', color: '#ef4444' },
+    ];
+
+    // Presets for navigation
+    const PRESETS = {
+      overview:  { x: 1500, y: 1100, zoom: 0.45 },
+      plaza:     { x: 1600, y: 1250, zoom: 0.95 },
+      div1:      { x: 950,  y: 950,  zoom: 1.15 },
+      div2:      { x: 1440, y: 920,  zoom: 1.15 },
+      div3:      { x: 1880, y: 920,  zoom: 1.15 },
+      div4:      { x: 2320, y: 950,  zoom: 1.15 },
+      executive: { x: 1500, y: 450,  zoom: 1.25 },
+      cafe:      { x: 1200, y: 1650, zoom: 1.05 }
+    };
+
+    // =========================================================================
+    // 3. DRIFTING SAKURA PARTICLES & CLOUDS
+    // =========================================================================
+    const PETALS = Array.from({ length: 90 }).map(() => ({
+      x: Math.random() * WORLD_W,
+      y: Math.random() * WORLD_H,
+      vx: -0.8 - Math.random() * 0.8,
+      vy: 0.6 + Math.random() * 0.8,
+      size: 4 + Math.random() * 4,
+      rot: Math.random() * Math.PI * 2,
+      vRot: (Math.random() - 0.5) * 0.05
+    }));
+
+    // =========================================================================
+    // 4. PRE-RENDERED 2.5D ISOMETRIC VECTOR MAP
+    // =========================================================================
+    function drawMap() {
+      // A. ENDLESS TROPICAL OCEAN
+      const oceanGrad = ctx.createLinearGradient(0, 0, 0, WORLD_H);
+      if (!isSunset) {
+        oceanGrad.addColorStop(0, '#58bde3');
+        oceanGrad.addColorStop(1, '#9fe2f7');
+      } else {
+        oceanGrad.addColorStop(0, '#be4b36');
+        oceanGrad.addColorStop(1, '#ea865b');
+      }
+      ctx.fillStyle = oceanGrad;
+      ctx.fillRect(0, 0, WORLD_W, WORLD_H);
+
+      // Ocean Shoreline Rings (Soft waves)
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.28)';
+      ctx.beginPath();
+      ctx.ellipse(1500, 1250, 1380, 850, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // B. SANDY BEACH PERIMETER
+      ctx.fillStyle = isSunset ? '#dfb07a' : '#fae3a2';
+      ctx.beginPath();
+      ctx.ellipse(1500, 1220, 1320, 790, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // C. TIER 1 CLIFFS & BASE LAWN (LOWER COASTAL TERRACE)
+      // Stepped Cliff Shadows
+      ctx.fillStyle = isSunset ? '#7d5236' : '#996947';
+      ctx.beginPath();
+      ctx.ellipse(1500, 1180, 1240, 720, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Lush Green Lower Lawn
+      ctx.fillStyle = isSunset ? '#5a823c' : '#7ec64b';
+      ctx.beginPath();
+      ctx.ellipse(1500, 1150, 1240, 710, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // D. TIER 2: MAIN WORKSPACE TERRACE (4 DIVISION PAVILIONS)
+      // Cliff elevation drop
+      ctx.fillStyle = isSunset ? '#6b4329' : '#885c3c';
+      ctx.beginPath();
+      ctx.roundRect(500, 680, 2000, 660, 48);
+      ctx.fill();
+
+      // Tier 2 Grassy Floor
+      ctx.fillStyle = isSunset ? '#6b9347' : '#8dd856';
+      ctx.beginPath();
+      ctx.roundRect(500, 650, 2000, 660, 48);
+      ctx.fill();
+
+      // E. TIER 3: EXECUTIVE PAGODA CLIFF (AT WATERFALL HEAD)
+      ctx.fillStyle = isSunset ? '#5c3820' : '#754d2f';
+      ctx.beginPath();
+      ctx.roundRect(1100, 220, 800, 360, 40);
+      ctx.fill();
+
+      ctx.fillStyle = isSunset ? '#7a9f52' : '#9be661';
+      ctx.beginPath();
+      ctx.roundRect(1100, 200, 800, 360, 40);
+      ctx.fill();
+
+      // F. WINDING RIVER & WATERFALL
+      // Mountain Waterfall
+      ctx.fillStyle = '#bae6fd';
+      ctx.fillRect(1460, 480, 80, 180);
+
+      // River winding through the island down to the ocean
+      ctx.fillStyle = '#38bdf8';
+      ctx.beginPath();
+      ctx.moveTo(1460, 660);
+      ctx.bezierCurveTo(1350, 950, 1650, 1200, 1420, 1550);
+      ctx.lineTo(1580, 1550);
+      ctx.bezierCurveTo(1800, 1200, 1500, 950, 1540, 660);
+      ctx.closePath();
+      ctx.fill();
+
+      // River Waterfall Splash at beach
+      ctx.fillStyle = '#e0f2fe';
+      ctx.beginPath();
+      ctx.ellipse(1500, 1550, 95, 25, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // G. WINDING TRACKS & COBBLESTONE ROADS (MATCHING SKETCHFAB)
+      ctx.strokeStyle = isSunset ? '#c99b6d' : '#eed0a0';
+      ctx.lineWidth = 44;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      // Ring Road around the island
+      ctx.beginPath();
+      ctx.ellipse(1500, 1150, 1120, 600, 0, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Central Avenue through the 4 divisions
+      ctx.beginPath();
+      ctx.moveTo(600, 920);
+      ctx.lineTo(2400, 920);
+      ctx.stroke();
+
+      // Avenue to Executive Pagoda
+      ctx.beginPath();
+      ctx.moveTo(1500, 650);
+      ctx.lineTo(1500, 520);
+      ctx.stroke();
+
+      // H. TRADITIONAL RED ARCHED BRIDGES ACROSS RIVER
+      // Bridge 1 (Tier 2 Center)
+      ctx.fillStyle = '#b91c1c';
+      ctx.fillRect(1410, 890, 180, 60);
+      ctx.fillStyle = '#ef4444';
+      ctx.fillRect(1410, 885, 180, 8);
+      ctx.fillRect(1410, 947, 180, 8);
+
+      // Bridge 2 (Beach Lower Bridge)
+      ctx.fillStyle = '#d97706';
+      ctx.fillRect(1410, 1480, 160, 48);
+
+      // I. 4 DIVISION STUDIO PAVILIONS ON TIER 2
+      const rooms = [
+        { name: '📚 DIVISI 01 · AKADEMIK', x: 780,  y: 720, w: 380, h: 480, floor: '#f3e8ff', border: '#a855f7' },
+        { name: '🏗️ DIVISI 02 · BIM',      x: 1280, y: 720, w: 320, h: 480, floor: '#dcfce7', border: '#22c55e' },
+        { name: '📈 DIVISI 03 · TRADING',  x: 1720, y: 720, w: 320, h: 480, floor: '#fef3c7', border: '#f59e0b' },
+        { name: '💻 DIVISI 04 · WEB',      x: 2160, y: 720, w: 380, h: 480, floor: '#e0f2fe', border: '#0284c7' }
+      ];
+
+      rooms.forEach(r => {
+        // Room Shadow
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.12)';
+        ctx.beginPath();
+        ctx.roundRect(r.x + 8, r.y + 8, r.w, r.h, 20);
+        ctx.fill();
+
+        // Room Floor
+        ctx.fillStyle = r.floor;
+        ctx.beginPath();
+        ctx.roundRect(r.x, r.y, r.w, r.h, 20);
+        ctx.fill();
+
+        // Room Timber Frame
+        ctx.strokeStyle = r.border;
+        ctx.lineWidth = 4;
+        ctx.stroke();
+
+        // Room Header Banner
+        ctx.fillStyle = r.border;
+        ctx.beginPath();
+        ctx.roundRect(r.x + 14, r.y + 14, r.w - 28, 32, 10);
+        ctx.fill();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 12px "Plus Jakarta Sans", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(r.name, r.x + r.w / 2, r.y + 35);
+      });
+
+      // J. CENTRAL PLAZA & GIANT CHERRY BLOSSOM TREE (MATCHING SKETCHFAB)
+      // Plaza Circle
+      ctx.fillStyle = isSunset ? '#d3a579' : '#fffbeb';
+      ctx.beginPath();
+      ctx.ellipse(1500, 1260, 160, 110, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 4;
+      ctx.stroke();
+
+      // Giant Cherry Blossom Tree (Canopy Clouds)
+      ctx.fillStyle = '#f472b6';
+      ctx.beginPath();
+      ctx.arc(1500, 1220, 75, 0, Math.PI * 2);
+      ctx.arc(1450, 1210, 55, 0, Math.PI * 2);
+      ctx.arc(1550, 1210, 55, 0, Math.PI * 2);
+      ctx.arc(1500, 1170, 60, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Highlights
+      ctx.fillStyle = '#fbcfe8';
+      ctx.beginPath();
+      ctx.arc(1485, 1200, 45, 0, Math.PI * 2);
+      ctx.arc(1530, 1200, 35, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Tree Trunk
+      ctx.fillStyle = '#451a03';
+      ctx.fillRect(1490, 1240, 20, 35);
+
+      // K. TIER 3 EXECUTIVE PAGODA LOUNGE (@Ai)
+      // Pagoda Base
+      ctx.fillStyle = '#b91c1c';
+      ctx.beginPath();
+      ctx.roundRect(1410, 290, 180, 140, 16);
+      ctx.fill();
+      ctx.strokeStyle = '#ef4444';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      // Stepped Pagoda Roof Slabs
+      ctx.fillStyle = '#292524';
+      ctx.fillRect(1380, 275, 240, 20);
+      ctx.fillRect(1410, 250, 180, 18);
+      ctx.fillRect(1440, 228, 120, 16);
+
+      // Golden Crown Spire
+      ctx.fillStyle = '#f59e0b';
+      ctx.beginPath();
+      ctx.arc(1500, 215, 10, 0, Math.PI * 2);
+      ctx.fill();
+
+      // L. THE ROOST CAFE & PATIO ON TIER 1
+      ctx.fillStyle = '#3b1d0a';
+      ctx.beginPath();
+      ctx.roundRect(1050, 1600, 220, 90, 14);
+      ctx.fill();
+
+      ctx.fillStyle = '#f8fafc';
+      ctx.font = 'bold 13px "Plus Jakarta Sans"';
+      ctx.textAlign = 'center';
+      ctx.fillText('☕ THE ROOST CAFE', 1160, 1650);
+
+      // M. LUSH PINE & OAK TREES SCATTERED AROUND ISLAND
+      const trees = [
+        [420, 750], [460, 900], [420, 1050],
+        [2540, 750], [2580, 900], [2540, 1050],
+        [1000, 480], [1150, 420], [1850, 420], [2000, 480],
+        [800, 1450], [920, 1550], [2050, 1450], [2180, 1550],
+        [1250, 1800], [1750, 1800]
+      ];
+
+      trees.forEach(([tx, ty]) => {
+        // Tree Shadow
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+        ctx.beginPath();
+        ctx.ellipse(tx, ty + 12, 22, 10, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Lush Green Pine Cone
+        ctx.fillStyle = isSunset ? '#166534' : '#15803d';
+        ctx.beginPath();
+        ctx.arc(tx, ty - 14, 20, 0, Math.PI * 2);
+        ctx.arc(tx - 12, ty - 6, 16, 0, Math.PI * 2);
+        ctx.arc(tx + 12, ty - 6, 16, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#4ade80';
+        ctx.beginPath();
+        ctx.arc(tx - 4, ty - 18, 12, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    // =========================================================================
+    // 5. DRAW 17 ANIMATED CHIBI AGENT SPRITES
+    // =========================================================================
+    function drawAgents(time) {
+      AGENTS.forEach((a, i) => {
+        const bob = Math.sin(time * 3 + i) * 3;
+
+        // Seated Desk Frame
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.roundRect(a.x - 42, a.y - 18, 84, 54, 8);
+        ctx.fill();
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Glowing Laptop Screen
+        ctx.fillStyle = '#10b981';
+        ctx.fillRect(a.x - 14, a.y - 12, 28, 18);
+        ctx.fillStyle = '#0f172a';
+        ctx.fillRect(a.x - 16, a.y + 6, 32, 4);
+
+        // Cute Shadow Under Agent
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+        ctx.beginPath();
+        ctx.ellipse(a.x, a.y - 25, 18, 7, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Agent Avatar Bubble with bobbing
+        ctx.fillStyle = a.color;
+        ctx.beginPath();
+        ctx.arc(a.x, a.y - 38 + bob, 22, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        // Emoji Face
+        ctx.font = '20px serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(a.emoji, a.x, a.y - 36 + bob);
+
+        // Name Tag Label
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+        ctx.beginPath();
+        ctx.roundRect(a.x - 45, a.y - 75 + bob, 90, 22, 999);
+        ctx.fill();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 11px "Plus Jakarta Sans"';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(a.name, a.x, a.y - 64 + bob);
+      });
+    }
+
+    // =========================================================================
+    // 6. DRAW DRIFTING SAKURA PETALS
+    // =========================================================================
+    function drawPetals() {
+      ctx.fillStyle = '#ffb7c5';
+      PETALS.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.vRot;
+
+        if (p.x < 0 || p.y > WORLD_H) {
+          p.x = Math.random() * WORLD_W + 200;
+          p.y = -20;
+        }
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.beginPath();
+        ctx.ellipse(0, 0, p.size, p.size * 0.5, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      });
+    }
+
+    // =========================================================================
+    // 7. MAIN RENDER LOOP (120 FPS BUTTER SMOOTH)
+    // =========================================================================
+    let lastTime = 0;
+    function render(timestamp) {
+      const time = timestamp * 0.001;
+
+      // Handle Canvas size
+      if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      ctx.save();
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Apply Pan & Zoom Transform Matrix
+      ctx.translate(panX, panY);
+      ctx.scale(scale, scale);
+
+      // 1. Draw 2.5D World Map
+      drawMap();
+
+      // 2. Draw 17 Agents
+      drawAgents(time);
+
+      // 3. Draw Sakura Petals
+      drawPetals();
+
+      ctx.restore();
+
+      requestAnimationFrame(render);
+    }
+
+    // =========================================================================
+    // 8. BUTTERY SMOOTH TOUCH & MOUSE PAN / ZOOM ENGINE
+    // =========================================================================
+    function centerAt(worldX, worldY, targetZoom) {
+      const targetPanX = (canvas.width / 2) - (worldX * targetZoom);
+      const targetPanY = (canvas.height / 2) - (worldY * targetZoom);
+
+      const startPanX = panX;
+      const startPanY = panY;
+      const startZoom = scale;
+      const startTime = performance.now();
+      const duration = 650;
+
+      function animateCamera(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3); // Cubic Out
+
+        panX = startPanX + (targetPanX - startPanX) * ease;
+        panY = startPanY + (targetPanY - startPanY) * ease;
+        scale = startZoom + (targetZoom - startZoom) * ease;
+
+        if (progress < 1) {
+          requestAnimationFrame(animateCamera);
+        }
+      }
+      requestAnimationFrame(animateCamera);
+    }
+
+    // Initial setup: Center on Central Plaza
+    window.addEventListener('load', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      centerAt(1500, 1100, 0.45);
+      requestAnimationFrame(render);
+    });
+
+    // Mouse Dragging (Pan)
+    canvas.addEventListener('mousedown', e => {
+      isDragging = true;
+      lastX = e.clientX;
+      lastY = e.clientY;
+    });
+
+    window.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      panX += dx;
+      panY += dy;
+      lastX = e.clientX;
+      lastY = e.clientY;
+    });
+
+    window.addEventListener('mouseup', () => isDragging = false);
+
+    // Mouse Wheel (Zoom towards cursor)
+    canvas.addEventListener('wheel', e => {
+      e.preventDefault();
+      const zoomFactor = e.deltaY < 0 ? 1.15 : 0.87;
+      const newScale = Math.max(0.25, Math.min(scale * zoomFactor, 2.5));
+
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
+      panX = mouseX - (mouseX - panX) * (newScale / scale);
+      panY = mouseY - (mouseY - panY) * (newScale / scale);
+      scale = newScale;
+    }, { passive: false });
+
+    // Touch Event Listeners (Mobile Pinch to Zoom & Pan)
+    let initialTouchDist = null;
+    canvas.addEventListener('touchstart', e => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+      } else if (e.touches.length === 2) {
+        isDragging = false;
+        initialTouchDist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+      }
+    });
+
+    canvas.addEventListener('touchmove', e => {
+      e.preventDefault();
+      if (e.touches.length === 1 && isDragging) {
+        const dx = e.touches[0].clientX - lastX;
+        const dy = e.touches[0].clientY - lastY;
+        panX += dx;
+        panY += dy;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+      } else if (e.touches.length === 2 && initialTouchDist) {
+        const dist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        const factor = dist / initialTouchDist;
+        const newScale = Math.max(0.25, Math.min(scale * factor, 2.5));
+        const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+        const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+
+        panX = midX - (midX - panX) * (newScale / scale);
+        panY = midY - (midY - panY) * (newScale / scale);
+        scale = newScale;
+        initialTouchDist = dist;
+      }
+    }, { passive: false });
+
+    canvas.addEventListener('touchend', () => {
+      isDragging = false;
+      initialTouchDist = null;
+    });
+
+    // Hit Testing (Click on Agent Sprite to open Bottom Sheet)
+    canvas.addEventListener('click', e => {
+      const clickX = (e.clientX - panX) / scale;
+      const clickY = (e.clientY - panY) / scale;
+
+      const clicked = AGENTS.find(a => {
+        const dist = Math.hypot(clickX - a.x, clickY - (a.y - 36));
+        return dist < 32;
+      });
+
+      if (clicked) {
+        openSheet(clicked);
+      }
+    });
+
+    // =========================================================================
+    // 9. UI INTERACTIONS & BOTTOM SHEET
+    // =========================================================================
+    let currentAgent = null;
+    function openSheet(agent) {
+      currentAgent = agent;
+      document.getElementById('sheet-emoji').innerText = agent.emoji;
+      document.getElementById('sheet-name').innerText = agent.name;
+      document.getElementById('sheet-role').innerText = agent.role;
+      document.getElementById('sheet-status').innerText = '🟢 ' + agent.status;
+      document.getElementById('sheet-desc').innerText = `Status Live: Agen ${agent.name} sedang siaga di zonanya. Perintah kerja dapat langsung disinkronkan ke WhatsApp Desktop.`;
+      document.getElementById('agent-sheet').classList.add('open');
+
+      // Center camera on clicked agent
+      centerAt(agent.x, agent.y, 1.25);
+    }
+
+    function closeSheet() {
+      document.getElementById('agent-sheet').classList.remove('open');
+    }
+
+    function sendTask() {
+      if (!currentAgent) return;
+      alert(`💬 Perintah untuk ${currentAgent.name} diterima!\nStatus disinkronkan ke WhatsApp Desktop.`);
+      closeSheet();
+    }
+
+    function setPreset(key, btn) {
+      document.querySelectorAll('.dock-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      const p = PRESETS[key];
+      if (p) centerAt(p.x, p.y, p.zoom);
+    }
+
+    function jumpTo(key) {
+      const p = PRESETS[key];
+      if (p) centerAt(p.x, p.y, p.zoom);
+    }
+
+    function toggleAtmosphere() {
+      isSunset = !isSunset;
+    }
+  </script>
+</body>
+</html>

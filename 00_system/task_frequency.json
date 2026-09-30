@@ -1,0 +1,90 @@
+{
+  "tasks": {
+    "open_desktop_app": {
+      "count": 14,
+      "status": "fully_automated",
+      "artifact": "d:\\SecondBrain\\00_system\\app_launcher.py",
+      "type": "automation_pipeline",
+      "samples": [
+        "coba buka revit kemudian sambungkan dengan pyrevit lalu buka project menara dyna",
+        "/browser buka tutorial untuk buka aplikasi lewat antigravity di youtube",
+        "sekarang untuk tes selanjutnya ai, kamu buka revit dan sambungkan di pyrevit lal"
+      ]
+    },
+    "revit_dynamo_bim": {
+      "count": 15,
+      "status": "fully_automated",
+      "artifact": "d:\\SecondBrain\\00_system\\revit_cli.py + revit-bim-connector skill",
+      "type": "skill_crystallized",
+      "samples": [
+        "coba buka revit kemudian sambungkan dengan pyrevit lalu buka project menara dyna",
+        "sekarang untuk tes selanjutnya ai, kamu buka revit dan sambungkan di pyrevit lal",
+        "\"Halo. Saya sudah melakukan perbaikan (repair) pada Microsoft Visual C++ sesuai "
+      ]
+    },
+    "whatsapp_automation": {
+      "count": 3,
+      "status": "skill_crystallized",
+      "artifact": "d:\\SecondBrain\\00_system\\whatsapp_cli.py + whatsapp-automator skill",
+      "type": "skill_crystallized",
+      "samples": [
+        "saya mau kamu buka whatsapp saya di desktop dan balas kontak teman saya yang nam",
+        "keren tugas selanjutnya yaitu, balas lagi glo mbg dengan pesan yang sama dia kir"
+      ],
+      "history": [
+        {
+          "timestamp": "2026-09-28T18:48:25.812412",
+          "note": "Send message to glo mbg"
+        }
+      ]
+    },
+    "browser_fast_tab": {
+      "count": 9,
+      "status": "fully_automated",
+      "artifact": "d:\\SecondBrain\\00_system\\app_launcher.py + fast-gui-orchestrator",
+      "type": "skill_crystallized",
+      "samples": [
+        "coba buka microsoft edge saya baru buka youtube kalau memang sudah bisa",
+        "coba ulang buka kembali microsoft edge saya baru buka user baru di microsoft edg",
+        "/browser buka tutorial untuk buka aplikasi lewat antigravity di youtube"
+      ]
+    },
+    "sync_gdrive": {
+      "count": 6,
+      "status": "fully_automated",
+      "artifact": "d:\\SecondBrain\\00_system\\sync_gdrive.py",
+      "type": "automation_pipeline",
+      "samples": [
+        "saya mau tanya apakah google drive sekarng sama fungsinya dengan obsidian vault ",
+        "coba cek gooledrive saya apakah sudah benar dia itu menjadi vault saya?",
+        "coba cek gooledrive saya apakah sudah benar dia itu menjadi vault saya? karena s"
+      ]
+    },
+    "safe_showcase_publishing": {
+      "count": 3,
+      "status": "skill_crystallized",
+      "artifact": "C:\\Users\\Heru Ardiansyah\\.gemini\\config\\skills\\safe-showcase-publisher\\SKILL.md",
+      "type": "skill_crystallized",
+      "samples": [
+        "clone repo ini [giancarloerra/SocratiCode: Enterprise-grade (40m+ LOC) codebase ",
+        "kira kira apa yang bisa saya isi disini ya agar diteripa waitlist dari typesafe ",
+        "ya buatkan tapi saya mau kamu buat apa yang terupload di sana itu aman semua dan"
+      ]
+    },
+    "fast_form_filler": {
+      "count": 3,
+      "status": "skill_crystallized",
+      "artifact": "C:\\Users\\Heru Ardiansyah\\.gemini\\config\\skills\\fast-form-filler\\SKILL.md",
+      "type": "skill_crystallized",
+      "samples": [
+        "kira kira apa yang bisa saya isi disini ya agar diteripa waitlist dari typesafe ",
+        "APA JAWABAN UNTUK INI?",
+        "APA JAWABAN UNTUK INI? What's your favorite Jev project you\u2019ve seen?"
+      ]
+    }
+  },
+  "rules": {
+    "skill_threshold": 2,
+    "automation_threshold": 4
+  }
+}

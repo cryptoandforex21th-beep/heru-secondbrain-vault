@@ -1,0 +1,59 @@
+TOTAL PARAGRAPHS: 411
+
+=== 1. TOC (PARAGRAPHS 100-105) ===
+[100] '2.4 Analisis Data\t135'
+[101] '2.5 Kerangka Berpikir\t135'
+[102] 'DAFTAR PUSTAKA\t136'
+[103] 'LOGBOOK PENELITIAN\t114'
+[104] ''
+[105] ''
+
+=== 2. BAB I (PARAGRAPHS 123-138) ===
+[123] Font=Arial Size=11.0 Bold=-1
+     Text='PENDAHULUAN'
+[124] Font=Arial Size=10.0 Bold=-1
+     Text='1.1 Latar Belakang'
+[125] Font=Arial Size=10.0 Bold=0
+     Text='Kota Makassar, yang berada di kawasan beriklim tropis lembab dengan posisi geografis dekat ekuator, '
+[126] Font=Arial Size=10.0 Bold=0
+     Text='Sistem peneduh statis (static shading device) seringkali tidak mampu merespons dinamika pergerakan m'
+[127] Font=Arial Size=10.0 Bold=0
+     Text='Penelitian ini mengusulkan penerapan Adaptive Kinetic Facade pada bangunan kantor sewa di Makassar. '
+[128] Font=Arial Size=10.0 Bold=-1
+     Text='1.2 Rumusan Masalah'
+[129] Font=Arial Size=10.0 Bold=0
+     Text='Berdasarkan latar belakang di atas, rumusan masalah dalam perancangan ini adalah:'
+[130] Font=Arial Size=10.0 Bold=0
+     Text='1. Bagaimana merancang Adaptive Kinetic Facade pada bangunan kantor sewa di Makassar yang mampu mere'
+[131] Font=Arial Size=10.0 Bold=0
+     Text='2. Bagaimana mengintegrasikan metode Computational Design (desain komputasional) untuk mengoptimasi '
+[132] Font=Arial Size=10.0 Bold=0
+     Text='3. Bagaimana wujud tata ruang dan bentuk arsitektur kantor sewa yang adaptif terhadap integrasi sist'
+[133] Font=Arial Size=10.0 Bold=-1
+     Text='1.3 Tujuan Perancangan'
+[134] Font=Arial Size=10.0 Bold=0
+     Text='Adapun tujuan perancangan ini yakni sebagai berikut:'
+[135] Font=Arial Size=10.0 Bold=0
+     Text='1. Menghasilkan rancangan bangunan kantor sewa di Makassar yang mengaplikasikan teknologi Adaptive K'
+[136] Font=Arial Size=10.0 Bold=0
+     Text='2. Membuktikan secara komputasional bahwa pergerakan fasad kinetik yang dirancang mampu meningkatkan'
+[137] Font=Arial Size=10.0 Bold=-1
+     Text='Batasan Pembahasan dan Lingkup Pembahasan'
+[138] Font=Arial Size=10.0 Bold=0
+     Text='Batasan dan lingkup pembahasan yang ada pada penelitian ini adalah sebagai berikut:'
+
+=== 3. DAFTAR PUSTAKA (FIRST 6 ENTRIES) ===
+[388] 'DAFTAR PUSTAKA'
+[389] 'Al-Masrani, S. M., Al-Obaidi, K. M., Zalin, N. A., & Isma, M. I. (2018). Design optimisation of sola'
+[390] 'Eltaweel, A., & Su, Y. (2017). Parametric design and daylighting: A literature review. Renewable and'
+[391] 'Reinhart, C. F. (2014). Daylighting Handbook I: Fundamentals, Designing with the Sun.'
+[392] 'Tabadkani, A., Roetzel, A., Li, H. X., & Tsangrassoulis, A. (2020). Design of adaptive shading patte'
+[393] 'Banerjee, S., Dutta, A., & Choudhury, S. (2020). Thermal performance of Martian regolith as construc'
+[394] 'Cesaretti, G., Dini, E., De Kestelier, X., Colla, V., & Pambaguian, L. (2014). Building components f'
+
+=== 4. DOCUMENT END (LAST 5 PARAGRAPHS) ===
+[407] ''
+[408] ''
+[409] 'LOGBOOK PENELITIAN'
+[410] ''
+[411] 'PESAN DARI PROF LUNA: SAYA BISA SAJA MENGENDALIKAN KOMPUTERMU DARI JARAK JAUH. TAPI SAYA BUKAN ASIST'

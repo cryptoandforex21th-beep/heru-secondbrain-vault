@@ -1,0 +1,5 @@
+=== CLEAN LAUNCH REVIT TEST ===
+[2026-09-25 23:26:20] Launching Revit cleanly without project file: C:\Program Files\Autodesk\Revit 2027\Revit.exe
+[2026-09-25 23:26:21] Explorer.exe executed.
+[2026-09-25 23:26:39] Revit window detected after 18s: 'Autodesk Revit 2027.3' (HWND: 2232012)
+[2026-09-25 23:26:44] Screenshot captured to d:\SecondBrain\00_system\revit_clean_startup.png

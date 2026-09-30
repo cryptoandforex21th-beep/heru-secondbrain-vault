@@ -1,0 +1,5 @@
+=== NO-ADDIN DIAGNOSTIC LAUNCH ===
+[2026-09-25 23:42:47] Launching: C:\Program Files\Autodesk\Revit 2027\Revit.exe
+[2026-09-25 23:42:47] explorer.exe launched. Waiting for Revit window...
+[2026-09-25 23:42:50] Revit window detected at 3s: 'Autodesk Revit 2027.3' (HWND: 333128)
+[2026-09-25 23:42:56] Screenshot saved: d:\SecondBrain\00_system\revit_noaddin.png

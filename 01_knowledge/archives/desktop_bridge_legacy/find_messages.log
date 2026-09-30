@@ -1,0 +1,5 @@
+[2026-09-25 22:21:13] === Finding Messages in WhatsApp ===
+[2026-09-25 22:21:13] Window: WhatsApp Beta
+[2026-09-25 22:21:13] Child 0: Pane | Name: 'Non Client Input Sink Window' | Class: InputNonClientPointerSource | Rect: (L-32000, T-32000, R-31848, B-31968)
+[2026-09-25 22:21:13] Child 1: Pane | Name: '' | Class: Microsoft.UI.Content.DesktopChildSiteBridge | Rect: (L-32000, T-31999, R-30935, B-31276)
+[2026-09-25 22:21:13] Child 2: TitleBar | Name: '' | Class:  | Rect: (L-31992, T-31997, R-31848, B-31972)

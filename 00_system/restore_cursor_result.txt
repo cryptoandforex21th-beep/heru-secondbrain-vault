@@ -1,0 +1,4 @@
+Registry Arrow: C:\WINDOWS\cursors\aero_arrow_l.cur
+hcur loaded: 24055572
+SetSystemCursor result: 1
+SystemParametersInfoW SPI_SETCURSORS result: 0

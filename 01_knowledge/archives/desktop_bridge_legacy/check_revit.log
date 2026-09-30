@@ -1,0 +1,5 @@
+[2026-09-25 22:41:12] === Checking Revit Window and pyRevit Status ===
+[2026-09-25 22:41:12] Found Revit windows: [(2034026, 'Revit'), (396658, 'Autodesk Revit 2027.3 - EDUCATION (NON COMMERCIAL) - [PROJECT MENARA DYNAMO.rvt - Schedule: RAB DRAFT Makassar 2026 - Curtain Wall Iron (AHSP PU 8/2023)]'), (331224, 'pyRevit'), (462308, 'pyRevit')]
+[2026-09-25 22:41:12] Focusing Revit window: 'Revit'
+[2026-09-25 22:41:14] Saved screenshot to d:\SecondBrain\00_system\revit_active.png
+[2026-09-25 22:41:17] pyRevit Status Error: timed out

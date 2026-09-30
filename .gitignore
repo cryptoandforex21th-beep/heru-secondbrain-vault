@@ -1,0 +1,19 @@
+# Security & Vault (ZERO-LEAK GUARANTEE)
+00_system/.vault/
+*.recovery-codes*
+client_secret_*
+.env
+.env.local
+*.env*
+
+# Dependencies & Temporary caches
+node_modules/
+.next/
+.tmp.driveupload/
+.tmp.drivedownload/
+__pycache__/
+*.pyc
+
+# Media scratch dumps
+01_knowledge/archives/root_scrape_dumps/
+00_system/scratch/

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecondBrain - Total Knowledge & Memory Graph</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg: #0e1417;
+      --card-bg: rgba(18, 25, 29, 0.94);
+      --border: rgba(166, 195, 195, 0.2);
+      --accent: #cf6b42;
+      --accent-soft: #e8ae88;
+      --cyan: #a6c3c3;
+      --luna: #a87ffb;
+      --text: #e7e3d8;
+      --text-muted: #839695;
+    }
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      user-select: none;
+    }
+    #canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      cursor: grab;
+    }
+    #canvas:active {
+      cursor: grabbing;
+    }
+    .glass-panel {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.55);
+    }
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(166, 195, 195, 0.3);
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="w-full h-full relative">
+
+  <!-- Canvas Graph View -->
+  <canvas id="canvas"></canvas>
+
+  <!-- Top Bar -->
+  <header class="absolute top-4 left-4 right-4 flex flex-wrap items-center justify-between gap-3 pointer-events-none z-20">
+    <div class="glass-panel rounded-xl px-4 py-2 flex items-center gap-3 pointer-events-auto">
+      <div class="flex items-center gap-1.5">
+        <div class="w-3.5 h-3.5 rounded-full bg-[#cf6b42] shadow-[0_0_12px_#cf6b42]" title="Heru"></div>
+        <div class="w-3.5 h-3.5 rounded-full bg-[#e11d48] shadow-[0_0_12px_#e11d48]" title="Ai (PM)"></div>
+        <div class="w-3.5 h-3.5 rounded-full bg-[#8b5cf6] shadow-[0_0_12px_#8b5cf6]" title="Divisi 01 @Luna"></div>
+        <div class="w-3.5 h-3.5 rounded-full bg-[#0284c7] shadow-[0_0_12px_#0284c7]" title="Divisi 02 @Mochi"></div>
+        <div class="w-3.5 h-3.5 rounded-full bg-[#d97706] shadow-[0_0_12px_#d97706]" title="Divisi 03 @Kaktus"></div>
+      </div>
+      <div>
+        <h1 class="text-sm font-bold tracking-wide text-[#e7e3d8] flex items-center gap-2">
+          SecondBrain <span class="text-xs font-normal text-[#cf6b42]">Agency Mesh Graph</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#e11d48]/20 text-[#fda4af] border border-[#e11d48]/30">02_brains Architecture</span>
+        </h1>
+        <p class="text-[10px] text-[#839695] font-mono">Heru, Ai (PM), 3 Divisi (@Luna, @Mochi, @Kaktus) &amp; Seluruh Subagent</p>
+      </div>
+    </div>
+
+    <!-- Search Box -->
+    <div class="glass-panel rounded-xl px-3 py-1.5 flex items-center gap-2 pointer-events-auto">
+      <svg class="w-4 h-4 text-[#839695]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+      <input id="searchInput" type="text" placeholder="Cari Ai, Luna, Mochi, Kaktus, Skripsi, Menara Dynamo..." 
+        class="bg-transparent text-xs text-[#e7e3d8] placeholder-[#839695] outline-none w-44 sm:w-60 focus:w-72 transition-all">
+      <button id="clearSearch" class="text-xs text-[#839695] hover:text-[#e7e3d8] hidden">&times;</button>
+    </div>
+  </header>
+
+  <!-- Category Pills (Bottom Left) -->
+  <div class="absolute bottom-5 left-4 flex flex-wrap gap-1.5 max-w-[85vw] pointer-events-auto z-20">
+    <button data-cat="all" class="filter-btn active glass-panel rounded-lg px-3 py-1.5 text-xs font-mono text-[#e7e3d8] border border-[#cf6b42] transition">Semua (<span id="countAll">0</span>)</button>
+    <button data-cat="identity" class="filter-btn glass-panel rounded-lg px-3 py-1.5 text-xs font-mono text-[#839695] hover:text-[#e7e3d8] transition">Founder &amp; Studio</button>
+    <button data-cat="brains_pm" class="filter-btn glass-panel rounded-lg px-3 py-1.5 text-xs font-mono text-[#839695] hover:text-[#e7e3d8] transition">👑 @Ai PM</button>
+    <button data-cat="div_academic" class="filter-btn glass-panel rounded-lg px-3 py-1.5 text-xs font-mono text-[#839695] hover:text-[#e7e3d8] transition">🎓 Divisi 01 (@Luna)</button>
+    <button data-cat="div_dev" class="filter-btn glass-panel rounded-lg px-3 py-1.5 text-xs font-mono text-[#839695] hover:text-[#e7e3d8] transition">💻 Divisi 02 (@Mochi)</button>
+    <button data-cat="div_bim" class="filter-btn glass-panel rounded-lg px-3 py-1.5 text-xs font-mono text-[#839695] hover:text-[#e7e3d8] transition">📐 Divisi 03 (@Kaktus)</button>
+    <button data-cat="projects" class="filter-btn glass-panel rounded-lg px-3 py-1.5 text-xs font-mono text-[#839695] hover:text-[#e7e3d8] transition">Proyek &amp; Skripsi</button>
+    <button data-cat="system" class="filter-btn glass-panel rounded-lg px-3 py-1.5 text-xs font-mono text-[#839695] hover:text-[#e7e3d8] transition">System &amp; Roster</button>
+    <button data-cat="cloud" class="filter-btn glass-panel rounded-lg px-3 py-1.5 text-xs font-mono text-[#839695] hover:text-[#e7e3d8] transition">Cloud &amp; Rig</button>
+  </div>
+
+  <!-- Zoom & Control Buttons (Bottom Right) -->
+  <div class="absolute bottom-5 right-4 flex flex-col gap-1.5 glass-panel rounded-xl p-1.5 pointer-events-auto z-20">
+    <button id="zoomIn" class="w-8 h-8 rounded-lg flex items-center justify-center text-[#e7e3d8] hover:bg-white/10 text-base font-bold transition">+</button>
+    <button id="zoomOut" class="w-8 h-8 rounded-lg flex items-center justify-center text-[#e7e3d8] hover:bg-white/10 text-base font-bold transition">&minus;</button>
+    <button id="togglePhysics" class="w-8 h-8 rounded-lg flex items-center justify-center text-[#e7e3d8] hover:bg-white/10 text-xs font-mono transition" title="Freeze/Play Fisika">&#x23F8;</button>
+    <button id="resetView" class="w-8 h-8 rounded-lg flex items-center justify-center text-[#e7e3d8] hover:bg-white/10 text-xs font-mono transition" title="Reset View">&#x27F3;</button>
+  </div>
+
+  <!-- Detail Inspector Drawer -->
+  <div id="inspector" class="fixed top-0 right-0 h-full w-80 sm:w-96 glass-panel border-l border-[var(--border)] translate-x-full transition-transform duration-300 ease-out z-30 p-6 flex flex-col justify-between overflow-y-auto pointer-events-auto">
+    <div>
+      <div class="flex items-center justify-between pb-4 border-b border-[var(--border)]">
+        <span id="nodeCategoryBadge" class="text-[10px] font-mono uppercase px-2.5 py-1 rounded-full bg-[#cf6b42]/20 text-[#cf6b42] border border-[#cf6b42]/30">Category</span>
+        <button id="closeInspector" class="text-xl leading-none text-[#839695] hover:text-[#e7e3d8]">&times;</button>
+      </div>
+
+      <div class="mt-4">
+        <h2 id="nodeTitle" class="text-xl font-bold text-[#e7e3d8] tracking-tight">Node Name</h2>
+        <p id="nodeSubtitle" class="text-xs font-mono text-[#a6c3c3] mt-1 break-all">d:\SecondBrain\path</p>
+      </div>
+
+      <div class="mt-5">
+        <h3 class="text-[11px] font-mono uppercase tracking-wider text-[#839695]">Isi &amp; Fungsi Dokumen</h3>
+        <p id="nodeDesc" class="text-xs leading-relaxed text-[#e7e3d8]/90 mt-1.5">Penjelasan lengkap mengenai dokumen ini.</p>
+      </div>
+
+      <div class="mt-5">
+        <h3 class="text-[11px] font-mono uppercase tracking-wider text-[#839695]">Dokumen Terkait (<span id="connectionCount">0</span>)</h3>
+        <div id="nodeConnections" class="mt-2 flex flex-col gap-1.5 max-h-52 overflow-y-auto pr-1"></div>
+      </div>
+    </div>
+
+    <div class="pt-5 border-t border-[var(--border)] mt-6">
+      <button id="focusNodeBtn" class="w-full py-2.5 px-3 rounded-lg bg-[#cf6b42] hover:bg-[#cf6b42]/90 text-white font-mono text-xs font-semibold tracking-wide transition shadow-lg shadow-[#cf6b42]/20">
+        Fokuskan Kamera ke Node Ini
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const CATEGORIES = {
+      identity: { name: "Founder & Studio", color: "#cf6b42", border: "#f2a07b" },
+      brains_pm: { name: "👑 @Ai (Executive PM)", color: "#e11d48", border: "#fda4af" },
+      div_academic: { name: "🎓 Divisi 01: Riset (@Luna)", color: "#8b5cf6", border: "#c4b5fd" },
+      div_dev: { name: "💻 Divisi 02: Dev (@Mochi)", color: "#0284c7", border: "#7dd3fc" },
+      div_bim: { name: "📐 Divisi 03: BIM (@Kaktus)", color: "#d97706", border: "#fcd34d" },
+      projects: { name: "Proyek Aktif & Skripsi", color: "#059669", border: "#6ee7b7" },
+      system: { name: "System & Roster", color: "#475569", border: "#94a3b8" },
+      cloud: { name: "Cloud & Rig", color: "#0891b2", border: "#67e8f9" }
+    };
+
+    const NODES = [
+      // 1. Founder & Studio
+      { id: "heru", label: "Heru Ardiansyah", cat: "identity", radius: 28, path: "Founder, Architect & Lead Researcher", desc: "Arsitek, desainer spasial, peneliti skripsi S1 Unhas, dan Principal Founder GradiEnt Studio. Pengambil keputusan utama seluruh ekosistem." },
+      { id: "gradient_studio", label: "GradiEnt Studio", cat: "identity", radius: 24, path: "Spatial & Architecture Practice", desc: "Filosofi: 'Spaces with weather in them', 'Built slowly, drawn clearly', 'Read the site first'. Praktik arsitektur taktil dan parametrik." },
+      { id: "secondbrain_hub", label: "d:\\SecondBrain", cat: "identity", radius: 26, path: "d:\\SecondBrain (Root Hub)", desc: "Pusat ekosistem pengetahuan, direktori agensi 02_brains, proyek aktif, referensi akademis, dan modul eksekusi terpadu." },
+
+      // 2. Executive Level (@Ai PM)
+      { id: "ai", label: "@Ai (Executive PM)", cat: "brains_pm", radius: 26, path: "02_brains/00_ai_pm/", desc: "Project Manager & Sahabat Karib Heru. Memegang hak akses superadmin tanpa batas, mengontrol 3 divisi, read/write semua folder, penjamin mutu akhir." },
+      { id: "agent_roster", label: "AGENT_ROSTER.md", cat: "system", radius: 18, path: "02_brains/AGENT_ROSTER.md", desc: "Direktori Master Tim AI Heru: @Ai (PM), @Luna & 4 staf akademik, @Mochi & 2 staf software dev, @Kaktus & 2 staf BIM." },
+      { id: "division_router", label: "DIVISION_ROUTER.json", cat: "system", radius: 18, path: "02_brains/00_ai_pm/DIVISION_ROUTER.json", desc: "Sistem routing otomatis tugas ke divisi dan subagen berdasarkan domain instruksi Heru." },
+
+      // 3. Divisi 01: Riset & Akademik (@Luna & Staf)
+      { id: "luna", label: "@Luna (Prof. LUNA)", cat: "div_academic", radius: 25, path: "02_brains/01_luna_academic/BRAIN_STATE.md", desc: "Koordinator Divisi Riset & Akademik. Dosen pembimbing Stanford-grade, penguji sidang killer, penjaga standar SNI 03-6197 & rigor skripsi Unhas." },
+      { id: "kutu", label: "@Kutu (Si Kutu Buku)", cat: "div_academic", radius: 17, path: "@Kutu Subagent (Scopus Q1)", desc: "Spesialis bedah literatur: mencari paper Scopus Q1, analisis sitasi, dan ekstraksi data via OpenAlex & arXiv." },
+      { id: "crayon", label: "@Crayon (Pelukis Grafik)", cat: "div_academic", radius: 17, path: "@Crayon Subagent (600 DPI Viz)", desc: "Spesialis visualisasi ilmiah: kurva iluminasi lux, Pareto Drizzle, resolusi 600 DPI standar Nature/Elsevier via scientific-figure-making." },
+      { id: "kucing", label: "@Kucing (Penjaga Integritas)", cat: "div_academic", radius: 17, path: "@Kucing Subagent (Anti-Turnitin)", desc: "Spesialis integritas tulisan: mendeteksi pola robotik AI, memoles ritme kalimat manusia asli (heru-academic-voice), dan lolos Turnitin." },
+      { id: "mata", label: "@Mata (Penonton Video)", cat: "div_academic", radius: 17, path: "@Mata Subagent (Claude-Video)", desc: "Spesialis sedot ilmu video: menonton video tutorial YouTube arsitektur komputasional/BIM, transkrip Whisper, dan rangkum rumus via claude-video." },
+      { id: "res_luna_survival", label: "Panduan Riset & Survival", cat: "div_academic", radius: 18, path: "01_knowledge/resources/panduan_riset_akademik_prof_luna.md", desc: "Disintesis dari kurasi PhD/TTAP Junwei Liang, Andrej Karpathy, David Patterson, serta strategi efisiensi hardware GPU vs Cloud." },
+
+      // 4. Divisi 02: Software & Web (@Mochi & Staf)
+      { id: "mochi", label: "@Mochi (Lead Architect)", cat: "div_dev", radius: 24, path: "02_brains/02_gradient_dev/BRAIN_STATE.md", desc: "Koordinator Divisi Software & Web GradiEnt Studio. Arsitektur Next.js 14 kokoh, React, Tailwind, Cursor surgical edit." },
+      { id: "piksel", label: "@Piksel (Ahli Antarmuka)", cat: "div_dev", radius: 17, path: "@Piksel Subagent (Tailwind / Cult-UI)", desc: "Spesialis frontend taktil: desain antarmuka modern, interaksi hover/klik halus, tombol taktil, dan form cepat." },
+      { id: "kunci", label: "@Kunci (Pemegang Brankas)", cat: "div_dev", radius: 18, path: "@Kunci Subagent (Supabase Admin)", desc: "Spesialis database: kelola PostgreSQL Supabase Region Singapore, skema tabel, keamanan RLS, dan Python dependency." },
+
+      // 5. Divisi 03: BIM & Konstruksi (@Kaktus & Staf)
+      { id: "kaktus", label: "@Kaktus (BIM Lead)", cat: "div_bim", radius: 24, path: "02_brains/03_bim_construction/BRAIN_STATE.md", desc: "Koordinator Divisi BIM & Proyek Lapangan. Tangguh di terik proyek, mengorkestrasi 238 DDC Skills, Revit 2027 & Rhino." },
+      { id: "tabrak", label: "@Tabrak (Tukang Razia 3D)", cat: "div_bim", radius: 17, path: "@Tabrak Subagent (Clash Detection)", desc: "Spesialis audit geometri: razia benturan 3D pipa vs balok/kolom, ducting HVAC, dan penataan shaft utilitas." },
+      { id: "cuan", label: "@Cuan (Si Jago Hitung)", cat: "div_bim", radius: 17, path: "@Cuan Subagent (QTO & RAB 5D)", desc: "Spesialis estimasi biaya: ekstraksi volume material Revit (QTO), AHSP, dan RAB Menara Dynamo Makassar sampai rupiah terkecil." },
+
+      // 6. Proyek Aktif & Skripsi
+      { id: "skripsi_mattoanging", label: "Skripsi: Mattoanging Hub", cat: "projects", radius: 23, path: "Skripsi S1 Arsitektur Unhas", desc: "Perancangan Mattoanging Community Hub di Makassar dengan integrasi Solar Tube & Façade Collector Modular. Dibimbing langsung oleh @Luna." },
+      { id: "proj_menara_dynamo", label: "Menara Dynamo Makassar", cat: "projects", radius: 22, path: "01_knowledge/projects/rab_menara_dynamo_makassar_2026.md", desc: "Proyek konstruksi nyata gedung di Makassar. Analisis RAB 2026, mitigasi risiko beton, dan evaluasi 5D BIM dipimpin @Kaktus & @Cuan." },
+      { id: "proj_samata", label: "Samata Pavilion Villa (BIM)", cat: "projects", radius: 21, path: "01_knowledge/projects/project_samata_pavilion_bim.md", desc: "Villa Paviliun 2 lantai di Samata, Gowa. Model BIM ISO 19650 LOD 350 diaudit oleh @Kaktus & @Tabrak." },
+      { id: "proj_kaktus_towers", label: "Kaktus Towers 80M & ML", cat: "projects", radius: 20, path: "01_knowledge/projects/project_kaktus_towers_ml.md", desc: "Komputasi morfologi arsitektur: Rhino Grasshopper Hops + PyTorch VAE Morphing (TWIST_VAE_MORPH.ghx)." },
+      { id: "proj_gradient_app", label: "GradiEnt Web App", cat: "projects", radius: 20, path: "https://gradientstudioapp.vercel.app", desc: "Web App resmi studio arsitektur: Next.js 14 di Vercel, Supabase Singapore, dan integrasi GA4." },
+      { id: "proj_portfolio", label: "Tactile Portfolio", cat: "projects", radius: 18, path: "01_knowledge/projects/architecture_portfolio/index.html", desc: "Portofolio interaktif arsitektur taktil dengan Google Analytics 4 (G-W4GTB1CP38)." },
+
+      // 7. System & Foundation
+      { id: "profile_doc", label: "PROFILE.md", cat: "system", radius: 19, path: "00_system/PROFILE.md", desc: "Master identitas Heru, akun terhubung (GitHub, Vercel, GA4, Supabase), aturan anti-repetisi, dan SOP studio." },
+      { id: "gemini_rules", label: "GEMINI.md (Workspace Rules)", cat: "system", radius: 17, path: "GEMINI.md", desc: "Prinsip aksi proaktif Ai, metaprinsip 2x kristalisasi skill & 4x otomasi pipeline, serta LUNA Rigor Rule." },
+      { id: "luna_guide", label: "Panduan Agent World-Class", cat: "system", radius: 17, path: "01_knowledge/resources/panduan_arsitektur_agent_world_class.md", desc: "Arsitektur agen disintesis dari Devin, Cursor, Lovable, v0, dan standar bimbingan skripsi LUNA." },
+      { id: "skill_arena", label: "The Arena Skill (Shielded)", cat: "system", radius: 18, path: "02_skills/arena/SKILL.md", desc: "Turnamen multi-strategi eliminasi (2.160 kombinasi penalaran) dengan Token-Shield Protocol (default micro 4 agen, model tiering flash_lite)." },
+
+      // 8. Cloud & Physical Rig
+      { id: "cloud_gdrive", label: "Google Drive (5TB Cloud)", cat: "cloud", radius: 21, path: "Google One 5TB Cloud Hub", desc: "Penyimpanan cloud utama 5TB yang menyinkronkan seluruh SecondBrain secara otomatis." },
+      { id: "cloud_notebooklm", label: "Google NotebookLM", cat: "cloud", radius: 19, path: "notebooklm.google.com", desc: "Akses cerdas catatan SecondBrain langsung dari smartphone saat laptop mati tanpa biaya server." },
+      { id: "cloud_supabase", label: "Supabase SG (Database)", cat: "cloud", radius: 19, path: "gtvrbqzuctdwqssgrqxo.supabase.co", desc: "Database cloud produksi GradiEnt Studio di Region Singapore (ap-southeast-1)." },
+      { id: "desktop_revit_rhino", label: "Revit 2027 & Rhino 8", cat: "cloud", radius: 19, path: "Session 1 Workstation Fisik", desc: "Workstation pemodelan BIM dan parametrik arsitektur utama di layar fisik Heru." }
+    ];
+
+    const LINKS = [
+      // Executive Core Connections
+      { source: "heru", target: "ai", label: "Executive PM & Sahabat" },
+      { source: "heru", target: "secondbrain_hub", label: "Founder & Owner" },
+      { source: "ai", target: "secondbrain_hub", label: "Superadmin Control" },
+      { source: "secondbrain_hub", target: "agent_roster", label: "Master Roster" },
+      { source: "secondbrain_hub", target: "division_router", label: "Routing Agensi" },
+
+      // PM to Division Leads
+      { source: "ai", target: "luna", label: "Koordinasi Divisi 01" },
+      { source: "ai", target: "mochi", label: "Koordinasi Divisi 02" },
+      { source: "ai", target: "kaktus", label: "Koordinasi Divisi 03" },
+
+      // Divisi 01 (Riset & Akademik)
+      { source: "luna", target: "kutu", label: "Tugaskan Literatur" },
+      { source: "luna", target: "crayon", label: "Tugaskan Grafik" },
+      { source: "luna", target: "kucing", label: "Tugaskan Integritas" },
+      { source: "luna", target: "mata", label: "Tugaskan Video" },
+      { source: "luna", target: "skripsi_mattoanging", label: "Supervisi Skripsi" },
+      { source: "luna", target: "res_luna_survival", label: "Playbook Riset" },
+      { source: "kutu", target: "skripsi_mattoanging", label: "Sitasi Scopus Q1" },
+      { source: "crayon", target: "skripsi_mattoanging", label: "Kurva Lux 600 DPI" },
+      { source: "kucing", target: "skripsi_mattoanging", label: "Anti-Turnitin AI" },
+      { source: "mata", target: "skripsi_mattoanging", label: "Tutorial Daylighting" },
+      { source: "heru", target: "skripsi_mattoanging", label: "Peneliti S1 Unhas" },
+
+      // Divisi 02 (Software & Web)
+      { source: "mochi", target: "piksel", label: "Komponen & Animasi" },
+      { source: "mochi", target: "kunci", label: "Database & Backend" },
+      { source: "mochi", target: "proj_gradient_app", label: "Lead Web Dev" },
+      { source: "mochi", target: "proj_portfolio", label: "Portfolio Dev" },
+      { source: "piksel", target: "proj_gradient_app", label: "Tailwind & Cult-UI" },
+      { source: "kunci", target: "cloud_supabase", label: "PostgreSQL SG" },
+      { source: "proj_gradient_app", target: "cloud_supabase", label: "Database API" },
+      { source: "heru", target: "gradient_studio", label: "Principal Architect" },
+      { source: "gradient_studio", target: "mochi", label: "Lead Architect" },
+
+      // Divisi 03 (BIM & Konstruksi)
+      { source: "kaktus", target: "tabrak", label: "Clash Detection" },
+      { source: "kaktus", target: "cuan", label: "QTO & Estimasi Biaya" },
+      { source: "kaktus", target: "proj_menara_dynamo", label: "Lead Proyek Lapangan" },
+      { source: "kaktus", target: "proj_samata", label: "Model ISO 19650" },
+      { source: "kaktus", target: "proj_kaktus_towers", label: "Parametrik Hops" },
+      { source: "kaktus", target: "desktop_revit_rhino", label: "Session 1 Workstation" },
+      { source: "tabrak", target: "proj_samata", label: "Razia Benturan MEP" },
+      { source: "tabrak", target: "proj_menara_dynamo", label: "Clash Pipa vs Balok" },
+      { source: "cuan", target: "proj_menara_dynamo", label: "Kalkulasi BOQ / RAB" },
+
+      // System & Cloud Foundations
+      { source: "secondbrain_hub", target: "profile_doc", label: "Master Profile" },
+      { source: "secondbrain_hub", target: "gemini_rules", label: "Workspace Rules" },
+      { source: "secondbrain_hub", target: "luna_guide", label: "Playbook Agen" },
+      { source: "secondbrain_hub", target: "skill_arena", label: "Tournament Engine" },
+      { source: "ai", target: "skill_arena", label: "Token-Shielded Orchestrator" },
+      { source: "secondbrain_hub", target: "cloud_gdrive", label: "Backup Cloud 5TB" },
+      { source: "cloud_gdrive", target: "cloud_notebooklm", label: "Mobile Sync HP" },
+      { source: "heru", target: "profile_doc", label: "Owner Profile" }
+    ];
+
+    document.getElementById("countAll").textContent = NODES.length;
+
+    // --- CANVAS FORCE PHYSICS SIMULATION ---
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    let width, height;
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * window.devicePixelRatio;
+      canvas.height = height * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    }
+    resize();
+    window.addEventListener("resize", resize);
+
+    const nodeMap = new Map();
+    NODES.forEach((n, i) => {
+      const angle = (i / NODES.length) * Math.PI * 2 + (Math.random() - 0.5) * 0.4;
+      const isCoreTrio = n.id === "heru" || n.id === "ai" || n.id === "luna" || n.id === "secondbrain_hub";
+      const dist = isCoreTrio ? 55 + Math.random() * 45 : 160 + Math.random() * 230;
+      n.x = (width / 2) + Math.cos(angle) * dist;
+      n.y = (height / 2) + Math.sin(angle) * dist;
+      n.vx = 0;
+      n.vy = 0;
+      n.visible = true;
+      nodeMap.set(n.id, n);
+    });
+
+    const resolvedLinks = LINKS.map(l => ({
+      source: nodeMap.get(l.source),
+      target: nodeMap.get(l.target),
+      label: l.label,
+      targetDist: (l.source.cat === "identity" || l.source.cat === "luna") && (l.target.cat === "identity" || l.target.cat === "luna") ? 100 : 135
+    })).filter(l => l.source && l.target);
+
+    const camera = { x: 0, y: 0, zoom: 0.95, targetZoom: 0.95 };
+    let hoveredNode = null, selectedNode = null, draggedNode = null;
+    let isPanning = false, panStart = { x: 0, y: 0 };
+    let currentFilter = "all", searchQuery = "";
+    let isPhysicsActive = true;
+
+    function updatePhysics() {
+      if (!isPhysicsActive) {
+        camera.zoom += (camera.targetZoom - camera.zoom) * 0.15;
+        return;
+      }
+
+      const repulsion = 640;
+      const springK = 0.027;
+      const centerGravity = 0.007;
+      const damping = 0.83;
+
+      const visible = NODES.filter(n => n.visible);
+
+      // Repulsion
+      for (let i = 0; i < visible.length; i++) {
+        const a = visible[i];
+        for (let j = i + 1; j < visible.length; j++) {
+          const b = visible[j];
+          let dx = b.x - a.x;
+          let dy = b.y - a.y;
+          let dist = Math.sqrt(dx * dx + dy * dy) || 1;
+          if (dist < 380) {
+            let force = (repulsion / (dist * dist)) * 26;
+            let fx = (dx / dist) * force;
+            let fy = (dy / dist) * force;
+            a.vx -= fx;
+            a.vy -= fy;
+            b.vx += fx;
+            b.vy += fy;
+          }
+        }
+      }
+
+      // Spring Links
+      for (const l of resolvedLinks) {
+        if (!l.source.visible || !l.target.visible) continue;
+        let dx = l.target.x - l.source.x;
+        let dy = l.target.y - l.source.y;
+        let dist = Math.sqrt(dx * dx + dy * dy) || 1;
+        let force = (dist - l.targetDist) * springK;
+        let fx = (dx / dist) * force;
+        let fy = (dy / dist) * force;
+        l.source.vx += fx;
+        l.source.vy += fy;
+        l.target.vx -= fx;
+        l.target.vy -= fy;
+      }
+
+      // Center Gravity & Damping
+      const cx = width / 2;
+      const cy = height / 2;
+      for (const n of visible) {
+        if (n === draggedNode) continue;
+        n.vx += (cx - n.x) * centerGravity;
+        n.vy += (cy - n.y) * centerGravity;
+        n.vx *= damping;
+        n.vy *= damping;
+        n.x += n.vx;
+        n.y += n.vy;
+      }
+
+      camera.zoom += (camera.targetZoom - camera.zoom) * 0.15;
+    }
+
+    function render() {
+      updatePhysics();
+
+      ctx.clearRect(0, 0, width, height);
+      ctx.save();
+      ctx.translate(width / 2 + camera.x, height / 2 + camera.y);
+      ctx.scale(camera.zoom, camera.zoom);
+      ctx.translate(-width / 2, -height / 2);
+
+      // Subtle celestial background grid
+      ctx.strokeStyle = "rgba(166, 195, 195, 0.035)";
+      ctx.lineWidth = 1;
+      const gridSize = 45;
+      const startX = Math.floor((-width) / gridSize) * gridSize;
+      const endX = Math.ceil((width * 2) / gridSize) * gridSize;
+      const startY = Math.floor((-height) / gridSize) * gridSize;
+      const endY = Math.ceil((height * 2) / gridSize) * gridSize;
+      ctx.beginPath();
+      for (let x = startX; x <= endX; x += gridSize) {
+        ctx.moveTo(x, startY);
+        ctx.lineTo(x, endY);
+      }
+      for (let y = startY; y <= endY; y += gridSize) {
+        ctx.moveTo(startX, y);
+        ctx.lineTo(endX, y);
+      }
+      ctx.stroke();
+
+      // Render Links
+      for (const l of resolvedLinks) {
+        if (!l.source.visible || !l.target.visible) continue;
+
+        const isHighlighted = (hoveredNode && (l.source === hoveredNode || l.target === hoveredNode)) ||
+                              (selectedNode && (l.source === selectedNode || l.target === selectedNode));
+        
+        ctx.beginPath();
+        ctx.moveTo(l.source.x, l.source.y);
+        ctx.lineTo(l.target.x, l.target.y);
+
+        if (isHighlighted) {
+          const isLunaLink = l.source.cat === "luna" || l.target.cat === "luna";
+          ctx.strokeStyle = isLunaLink ? "#a87ffb" : "#cf6b42";
+          ctx.lineWidth = 2.5;
+        } else if (hoveredNode || selectedNode) {
+          ctx.strokeStyle = "rgba(166, 195, 195, 0.08)";
+          ctx.lineWidth = 1;
+        } else {
+          const isLunaLink = l.source.cat === "luna" || l.target.cat === "luna";
+          ctx.strokeStyle = isLunaLink ? "rgba(168, 127, 251, 0.28)" : "rgba(166, 195, 195, 0.2)";
+          ctx.lineWidth = 1.2;
+        }
+        ctx.stroke();
+
+        if (isHighlighted && l.label) {
+          const midX = (l.source.x + l.target.x) / 2;
+          const midY = (l.source.y + l.target.y) / 2;
+          ctx.font = "9.5px monospace";
+          ctx.fillStyle = l.source.cat === "luna" || l.target.cat === "luna" ? "#c4b5fd" : "#e8ae88";
+          ctx.textAlign = "center";
+          ctx.fillText(l.label, midX, midY - 5);
+        }
+      }
+
+      // Render Nodes
+      for (const n of NODES) {
+        if (!n.visible) continue;
+
+        const isHovered = n === hoveredNode;
+        const isSelected = n === selectedNode;
+        const isNeighbor = (hoveredNode && resolvedLinks.some(l => (l.source === hoveredNode && l.target === n) || (l.target === hoveredNode && l.source === n))) ||
+                           (selectedNode && resolvedLinks.some(l => (l.source === selectedNode && l.target === n) || (l.target === selectedNode && l.source === n)));
+
+        const active = isHovered || isSelected || isNeighbor;
+        const dim = (hoveredNode || selectedNode) && !active;
+
+        const cat = CATEGORIES[n.cat] || CATEGORIES.identity;
+        const radius = n.radius * (isHovered || isSelected ? 1.25 : 1);
+
+        if (isHovered || isSelected) {
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, radius + 8, 0, Math.PI * 2);
+          ctx.fillStyle = cat.color + "38";
+          ctx.fill();
+        }
+
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = dim ? "rgba(38, 48, 52, 0.45)" : cat.color;
+        ctx.fill();
+        ctx.lineWidth = isHovered || isSelected ? 3 : 1.5;
+        ctx.strokeStyle = dim ? "rgba(166, 195, 195, 0.15)" : cat.border;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, radius * 0.35, 0, Math.PI * 2);
+        ctx.fillStyle = dim ? "rgba(255,255,255,0.1)" : "#ffffff";
+        ctx.fill();
+
+        ctx.font = (isHovered || isSelected ? "bold 12px" : "10px") + " sans-serif";
+        ctx.fillStyle = dim ? "rgba(231, 227, 216, 0.25)" : (isHovered || isSelected ? "#ffffff" : "#e7e3d8");
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(n.label, n.x, n.y + radius + 13);
+      }
+
+      ctx.restore();
+      requestAnimationFrame(render);
+    }
+    requestAnimationFrame(render);
+
+    function screenToWorld(sx, sy) {
+      const cx = width / 2;
+      const cy = height / 2;
+      const wx = (sx - cx - camera.x) / camera.zoom + cx;
+      const wy = (sy - cy - camera.y) / camera.zoom + cy;
+      return { x: wx, y: wy };
+    }
+
+    function findNodeAt(sx, sy) {
+      const w = screenToWorld(sx, sy);
+      for (let i = NODES.length - 1; i >= 0; i--) {
+        const n = NODES[i];
+        if (!n.visible) continue;
+        const dx = w.x - n.x;
+        const dy = w.y - n.y;
+        if (dx * dx + dy * dy <= (n.radius + 6) * (n.radius + 6)) return n;
+      }
+      return null;
+    }
+
+    canvas.addEventListener("mousemove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+
+      if (draggedNode) {
+        const w = screenToWorld(mx, my);
+        draggedNode.x = w.x;
+        draggedNode.y = w.y;
+        draggedNode.vx = 0;
+        draggedNode.vy = 0;
+        return;
+      }
+
+      if (isPanning) {
+        camera.x += mx - panStart.x;
+        camera.y += my - panStart.y;
+        panStart = { x: mx, y: my };
+        return;
+      }
+
+      const node = findNodeAt(mx, my);
+      if (node !== hoveredNode) {
+        hoveredNode = node;
+        canvas.style.cursor = hoveredNode ? "pointer" : "grab";
+      }
+    });
+
+    canvas.addEventListener("mousedown", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+      const node = findNodeAt(mx, my);
+
+      if (node) {
+        draggedNode = node;
+        selectNode(node);
+      } else {
+        isPanning = true;
+        panStart = { x: mx, y: my };
+        canvas.style.cursor = "grabbing";
+      }
+    });
+
+    window.addEventListener("mouseup", () => {
+      draggedNode = null;
+      if (isPanning) {
+        isPanning = false;
+        canvas.style.cursor = hoveredNode ? "pointer" : "grab";
+      }
+    });
+
+    canvas.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      const factor = e.deltaY < 0 ? 1.14 : 0.86;
+      camera.targetZoom = Math.max(0.3, Math.min(3.5, camera.targetZoom * factor));
+    }, { passive: false });
+
+    function selectNode(node) {
+      selectedNode = node;
+      const inspector = document.getElementById("inspector");
+      const badge = document.getElementById("nodeCategoryBadge");
+      const title = document.getElementById("nodeTitle");
+      const subtitle = document.getElementById("nodeSubtitle");
+      const desc = document.getElementById("nodeDesc");
+      const connList = document.getElementById("nodeConnections");
+      const connCount = document.getElementById("connectionCount");
+
+      const cat = CATEGORIES[node.cat] || CATEGORIES.identity;
+      badge.textContent = cat.name;
+      badge.style.borderColor = cat.border;
+      badge.style.color = cat.border;
+
+      title.textContent = node.label;
+      subtitle.textContent = node.path;
+      desc.textContent = node.desc;
+
+      const conns = resolvedLinks.filter(l => l.source === node || l.target === node);
+      connCount.textContent = conns.length;
+      connList.innerHTML = "";
+
+      conns.forEach(l => {
+        const other = l.source === node ? l.target : l.source;
+        const item = document.createElement("button");
+        item.className = "flex items-center justify-between text-left p-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs transition border border-white/5";
+        item.innerHTML = `
+          <div class="flex items-center gap-2 truncate">
+            <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background:${(CATEGORIES[other.cat]||CATEGORIES.identity).color}"></span>
+            <span class="text-[#e7e3d8] truncate font-medium">${other.label}</span>
+          </div>
+          <span class="text-[10px] font-mono text-[#839695] pl-2">${l.label || "Relasi"}</span>
+        `;
+        item.onclick = () => {
+          selectNode(other);
+          focusOnNode(other);
+        };
+        connList.appendChild(item);
+      });
+
+      inspector.classList.remove("translate-x-full");
+    }
+
+    document.getElementById("closeInspector").onclick = () => {
+      document.getElementById("inspector").classList.add("translate-x-full");
+      selectedNode = null;
+    };
+
+    function focusOnNode(node) {
+      const cx = width / 2;
+      const cy = height / 2;
+      camera.x = cx - node.x;
+      camera.y = cy - node.y;
+      camera.targetZoom = 1.35;
+    }
+
+    document.getElementById("focusNodeBtn").onclick = () => {
+      if (selectedNode) focusOnNode(selectedNode);
+    };
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll(".filter-btn").forEach(b => {
+          b.classList.remove("border-[#cf6b42]", "text-[#e7e3d8]");
+          b.classList.add("text-[#839695]");
+        });
+        btn.classList.add("border-[#cf6b42]", "text-[#e7e3d8]");
+        btn.classList.remove("text-[#839695]");
+
+        currentFilter = btn.dataset.cat;
+        applyFilters();
+      };
+    });
+
+    const searchInput = document.getElementById("searchInput");
+    const clearSearch = document.getElementById("clearSearch");
+    searchInput.oninput = (e) => {
+      searchQuery = e.target.value.toLowerCase().trim();
+      clearSearch.classList.toggle("hidden", searchQuery === "");
+      applyFilters();
+    };
+
+    clearSearch.onclick = () => {
+      searchInput.value = "";
+      searchQuery = "";
+      clearSearch.classList.add("hidden");
+      applyFilters();
+    };
+
+    function applyFilters() {
+      NODES.forEach(n => {
+        const matchesCat = currentFilter === "all" || n.cat === currentFilter || (currentFilter === "identity" && n.cat === "luna");
+        const matchesSearch = searchQuery === "" || 
+                              n.label.toLowerCase().includes(searchQuery) || 
+                              n.path.toLowerCase().includes(searchQuery) ||
+                              n.desc.toLowerCase().includes(searchQuery);
+        n.visible = matchesCat && matchesSearch;
+      });
+    }
+
+    document.getElementById("zoomIn").onclick = () => {
+      camera.targetZoom = Math.min(3.5, camera.targetZoom * 1.3);
+    };
+    document.getElementById("zoomOut").onclick = () => {
+      camera.targetZoom = Math.max(0.3, camera.targetZoom * 0.7);
+    };
+    document.getElementById("togglePhysics").onclick = () => {
+      isPhysicsActive = !isPhysicsActive;
+      document.getElementById("togglePhysics").innerHTML = isPhysicsActive ? "&#x23F8;" : "&#x25B6;";
+    };
+    document.getElementById("resetView").onclick = () => {
+      camera.x = 0;
+      camera.y = 0;
+      camera.targetZoom = 0.95;
+      NODES.forEach(n => {
+        n.vx += (Math.random() - 0.5) * 4;
+        n.vy += (Math.random() - 0.5) * 4;
+      });
+    };
+  </script>
+</body>
+</html>
