@@ -7,8 +7,8 @@ log_file = r"d:\SecondBrain\00_system\launcher.log"
 
 try:
     if os.path.exists(cmd_file):
-        with open(cmd_file, "r", encoding="utf-8") as f:
-            target = f.read().strip()
+        with open(cmd_file, "r", encoding="utf-8-sig") as f:
+            target = f.read().strip().lstrip('\ufeff')
         
         with open(log_file, "a", encoding="utf-8") as log:
             log.write(f"Launching: {target}\n")

@@ -104,6 +104,10 @@ def cmd_visual():
     subprocess.run([sys.executable, launcher, visual_path])
     print("🚀 Launched Blueprint Visualizer in Session 1!")
 
+def cmd_cdp(args):
+    cdp_script = os.path.join(SYS_DIR, "edge_cdp.py")
+    subprocess.run([sys.executable, cdp_script] + args)
+
 def main():
     if len(sys.argv) < 2:
         cmd_help()
@@ -122,6 +126,8 @@ def main():
         cmd_mesh()
     elif action in ["visual", "view", "gui"]:
         cmd_visual()
+    elif action in ["cdp", "browser", "chrome"]:
+        cmd_cdp(args)
     else:
         cmd_help()
 

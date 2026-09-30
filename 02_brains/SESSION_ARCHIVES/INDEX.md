@@ -43,3 +43,5 @@
 | [session_2026-09-30_2121.md](session_2026-09-30_2121.md) | 2026-09-30 21:21:36 WITA | @Ai (PM), @Luna (Akademik) | Auto-Archived |
 | [session_2026-09-30_2136.md](session_2026-09-30_2136.md) | 2026-09-30 21:36:26 WITA | @Ai (PM), @Luna (Akademik) | Auto-Archived |
 | [session_2026-09-30_2141.md](session_2026-09-30_2141.md) | 2026-09-30 21:41:26 WITA | @Ai (PM), @Luna (Akademik) | Auto-Archived |
+| [session_2026-09-30_2325.md](session_2026-09-30_2325.md) | 2026-09-30 23:25:41 WITA | @Ai (PM), @Luna (Akademik), @Mochi (Web Dev), @Kaktus (BIM), @MasAmba (Trading) | Auto-Archived |
+| [session_2026-10-01_0106.md](session_2026-10-01_0106.md) | 2026-10-01 01:06:34 WITA | @Ai (PM), @Luna (Akademik), @Mochi (Web Dev), @Kaktus (BIM), @MasAmba (Trading) | Auto-Archived |

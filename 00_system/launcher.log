@@ -422,3 +422,67 @@ Launching: D:\SecondBrain\01_knowledge\projects\skripsi_facade_collector_unhas\l
 os.startfile executed.
 Launching: d:\SecondBrain\04_app\static\layers_architecture.html
 os.startfile executed.
+Launching: https://gemini.google.com/gems/create
+start URL executed.
+Launching: ﻿C:\Python314\python.exe d:\SecondBrain\00_system\test_gemini_diag.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\test_gemini_diag.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\test_gemini_diag.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\install_gem1.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\test_input.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\check_fore.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\take_screenshot.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\test_clean.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\test_clean.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\test_clean.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\test_f12.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\test_devtools.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\test_devtools2.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\take_screenshot.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\test_console.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\test_console_tab.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\test_console_tab2.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\test_ctrl_shift_j.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\test_exact.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\test_paste.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\save_gem1.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\save_gem1_confirm.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\install_remaining_gems.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\nav_home.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\open_gems_manager.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\switch_to_gemini.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\test_at_menu.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\expand_sidebar.py
+subprocess.Popen executed silently.
+Launching: C:\Python314\python.exe d:\SecondBrain\00_system\final_ready.py
+subprocess.Popen executed silently.
+Launching: "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --remote-debugging-port=9222 --user-data-dir="C:\Users\Heru Ardiansyah\.gemini\edge_dev" about:blank
+subprocess.Popen executed silently.
+Launching: "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --remote-debugging-port=9222 --user-data-dir="C:\Users\Heru Ardiansyah\.gemini\edge_dev" "https://www.google.com"
+subprocess.Popen executed silently.
